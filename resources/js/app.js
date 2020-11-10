@@ -8,6 +8,18 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+
+require('../templates/js/main');
+require('../templates/vendor/bootstrap/js/bootstrap.bundle');
+require('../templates/vendor/jquery.easing/jquery.easing.min.js');
+require('../templates/vendor/php-email-form/validate.js');
+require('../templates/vendor/waypoints/jquery.waypoints.min.js');
+require('../templates/vendor/counterup/counterup.min.js');
+require('../templates/vendor/venobox/venobox.min.js');
+require('../templates/vendor/owl.carousel/owl.carousel.min.js');
+require('../templates/vendor/isotope-layout/isotope.pkgd.min.js');
+require('../templates/vendor/aos/aos.js'); 
+
 /**
  * The following block of code may be used to automatically register your
  * Vue components. It will recursively scan this directory for the Vue
