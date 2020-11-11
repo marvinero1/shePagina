@@ -2,7 +2,7 @@
 
 @section('content')
 <section id="hero">
-    <div class="hero-container" data-aos="fade-up">
+    <div class="hero-container">
       <h1>Bienvenidos a S.H.E</h1>
       <h2> Visita nuestro nuevo campo de entrenamiento </h2>
       <a href="campo_de_entrenamiento.html" class="btn-get-started scrollto">Verlo Ahora</a>
@@ -10,15 +10,13 @@
   </section><!-- End Hero -->
 
   <main id="main">
-
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
-      <div class="container" data-aos="fade-up">
+      <div class="container">
 
         <div class="row justify-content-end">
           <div class="col-lg-11">
             <div class="row justify-content-end">
-
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box py-5">
                   <i class="icofont-simple-smile"></i>
@@ -26,7 +24,6 @@
                   <p>Clientes Satisfechos</p>
                 </div>
               </div>
-
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box py-5">
                   <i class="icofont-document-folder"></i>
@@ -34,7 +31,6 @@
                   <p>Proyectos Elavorados</p>
                 </div>
               </div>
-
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box pb-5 pt-0 pt-lg-5">
                   <i class="icofont-clock-time"></i>
@@ -42,7 +38,6 @@
                   <p>Años de Experiencia</p>
                 </div>
               </div>
-
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box pb-5 pt-0 pt-lg-5">
                   <i class="icofont-award"></i>
@@ -50,7 +45,6 @@
                   <p>Reconocimiento</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -79,28 +73,24 @@
             </ul>
             <p>
               Durante su creciente desarrollo impulsado por el paulatino
-desarrollo y demanda de nuestro mercado y la captación de grandes
-proyectos además de los requerimientos generados por nuestros
-clientes, nace la necesidad de cambiar de unipersonal a una
-organización S.R.L. 
+              desarrollo y demanda de nuestro mercado y la captación de grandes
+              proyectos además de los requerimientos generados por nuestros
+              clientes, nace la necesidad de cambiar de unipersonal a una
+              organización S.R.L. 
             </p>
           </div>
-
         </div>
-
       </div>
     </section><!-- End About Section -->
 
     <!-- ======= Cta Section ======= -->
     <section id="cta" class="cta">
-      <div class="container" data-aos="fade-in">
-
+      <div class="container">
         <div class="text-center">
           <h3>Capacitaciones </h3>
           <p> Contamos con una gran variedad de cursos y Capacitaciones pensadas para empresas e industria en general. </p>
           <a class="cta-btn" href="services.html">Nuestros cursos</a>
         </div>
-
       </div>
     </section><!-- End Cta Section -->
 
@@ -109,34 +99,34 @@ organización S.R.L.
     <section id="services" class="services  section-bg ">
       <div class="container">
 
-        <div class="section-title pt-5" data-aos="fade-up">
+        <div class="section-title pt-5">
           <h2>Nuestros servicios</h2>
         </div>
 
         <div class="row">
           <div class="col-md-6">
-            <div class="icon-box" data-aos="fade-up">
+            <div class="icon-box" >
               <div class="icon"><i class="las la-tree" style="color: #3bce36;"></i></div>
               <h4 class="title"><a href="ambiental.html">Monitoreos Ambientales</a></h4>
               <p class="description"> Se realiza a efectos de medir la presencia y concentración de contaminantes en el ambiente, así como el estado de conservación de los recursos naturales</p>
             </div>
           </div>
           <div class="col-md-6">
-            <div class="icon-box" data-aos="fade-up">
+            <div class="icon-box" >
               <div class="icon"><i class="las la-industry" style="color: #e9bf06;"></i></div>
               <h4 class="title"><a href="ocupacional.html">Monitores Ocupacionales</a></h4>
               <p class="description">Nos permite reconocer, evaluar y controlar los factores de riesgo ocupacional generados en el lugar de trabajo con el fin de prevenir las enfermedades profesionales</p>
             </div>
           </div>
 
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-6" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="las la-tools" style="color: #3fcdc7;"></i></div> 
               <h4 class="title"><a href="Asistencia tecnica.html">Asistencia Tecnica</a></h4>
               <p class="description">Realizamos el servicio de asesoramiento y asistencia en temas de seguridad y medio ambiente</p>
             </div>
           </div>
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-md-6" data-aos-delay="100">
             <div class="icon-box">
               <div class="icon"><i class="las la-folder-open" style="color:#41cf2e;"></i></div> 
               <h4 class="title"><a href="Elaboracion psst.html">Elaboracion de programas PSST</a></h4>
@@ -144,14 +134,14 @@ organización S.R.L.
             </div>
           </div>
 
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-md-6" data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="las la-globe-americas" style="color: #eeff00;"></i></div>
               <h4 class="title"><a href="Diagnosticos Integrales.html">Diagnosticos Integrales</a></h4>
               <p class="description">Permite vislumbrar áreas de oportunidad y de mejora tanto organizacionales, analizando las diferentes áreas que conforman la empresa para definir su óptima estructura de funcionamiento.</p>
             </div>
           </div>
-          <div class="col-md-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-md-6"  data-aos-delay="200">
             <div class="icon-box">
               <div class="icon"><i class="las la-calculator" style="color: #4680ff;"></i></div>
               <h4 class="title"><a href="">Calculo de carga de Fuego</a></h4>
@@ -159,13 +149,9 @@ organización S.R.L.
             </div>
           </div>
         </div>
-
       </div>
     </section><!-- End Services Section -->
-
   </main><!-- End #main -->
-
   <!-- End Footer -->
-
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 @endsection

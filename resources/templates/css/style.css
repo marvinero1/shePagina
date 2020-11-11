@@ -75,10 +75,10 @@ h1, h2, h3, h4, h5, h6 {
 # Header
 --------------------------------------------------------------*/
 #header {
-  height: 90px;
+  /* height: 90px; */
   z-index: 997;
   transition: all 0.5s ease-in-out;
-  padding: 14px 0;
+  padding: 12px 0;
   background: #fff;
 }
 
@@ -104,7 +104,7 @@ h1, h2, h3, h4, h5, h6 {
 #header .logo img {
   padding: 0;
   margin: 0;
-  max-height: 75px; 
+  max-height: 65px; 
   position: relative;
   right: -80px;
   bottom: 1px;
@@ -762,7 +762,7 @@ section {
 
 .services .icon {
   position: absolute;
-  left: -20px;
+  left: 2px;
   top: calc(50% - 30px);
 }
 
@@ -2090,14 +2090,14 @@ section {
 --------------------------------------------------------------*/
 #footer {
   background: #141611;
-  padding: 0 0 30px 0;
+  padding: 0 0 15px 0;
   color: #fff;
   font-size: 14px;
 }
 
 #footer .footer-top {
   background: #1c1f18;
-  padding: 60px 0 30px 0;
+  padding: 40px 0 10px 0;
 }
 
 #footer .footer-top .footer-info {

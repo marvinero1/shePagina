@@ -14,8 +14,8 @@
                         a una cuadra y media pasando la
                         Avenida Beijing, zona Zarcobamba
                         <br>
-                        <strong>Telefono:</strong> 4486011<br>
-                        <strong>Email:</strong>info@shebolivia.net<br>
+                        <strong>Telefono:</strong><a href="tel:+591 4 4486011"></a> +591 4 4486011<br>
+                        <strong>Email:</strong><a href="mailto:info@shebolivia.net"> info@shebolivia.net</a> <br>
                     </p>
                     <div class="social-links">
                         <a href="https://www.facebook.com/SHE-Consullting-Group-SRL-1442644169304531"

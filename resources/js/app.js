@@ -8,7 +8,6 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
-
 require('../templates/js/main');
 require('../templates/vendor/bootstrap/js/bootstrap.bundle');
 require('../templates/vendor/jquery.easing/jquery.easing.min.js');

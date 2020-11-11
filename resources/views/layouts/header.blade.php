@@ -12,8 +12,8 @@
         <ul>
           <li class="drop-down"><a href="#">Nosotros</a>
             <ul>
-              <li><a href="historia.html">Historia</a></li>
-              <li><a href="Mision Vision.html">Mision Vision </a></li>                    
+              <li><a href="/historia">Historia</a></li>
+              <li><a href="/mision">Mision Vision </a></li>                    
                <!-- <li class="drop-down"><a href="#">Drop Down 2</a>
                 <ul>
                   <li><a href="about.html">Deep Drop Down 1</a></li>
@@ -28,8 +28,8 @@
           
           <li class="drop-down"><a href="#">Servicios</a>
             <ul>
-              <li><a href="ambiental.html">Monitoreos Ambientales</a></li>
-              <li><a href="ocupacional.html">Monitoreos Ocupacionales</a></li>
+              <li><a href="/monitoreoAmbiental">Monitoreos Ambientales</a></li>
+              <li><a href="/monitoreoOcupacional">Monitoreos Ocupacionales</a></li>
               <li><a href="Asistencia tecnica.html">Asistencia Tecnica</a></li>
               <li><a href="Elaboracion psst.html">Elaboracion de programas PSST</a></li>
               <li><a href="diagnostico integral.html">Diagnosticos Integrales</a></li>
