@@ -18,27 +18,33 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+    
 
-Route::get('/historia', 'HistoriaController@index')->name('historia');
+    Route::resource('/historia', 'HistoriaController');
+    
+    Route::resource('/mision', 'MisionController');
+    
+    Route::resource('/MoniAmbiental', 'MoniAmbientalController');
+    
+    Route::resource('/MoniOcupacional', 'MoniOcupacionalController');
+    
+    Route::resource('/asistenciaTecnica', 'AsistenciaController');
+    
+    Route::resource('/PSST', 'PsstController');
+    
+    Route::resource('/diagnosticoIntegrales', 'DiagnosticoController');
+    
+    Route::resource('/CalCarga', 'CalCargaController');
+    
+    Route::resource('/campoEntrenamiento', 'CampEntrenamientoController');
+    
+    Route::resource('/cursos', 'CursoController');
+    
+    Route::resource('/noticias', 'NoticiaController');
+    
+    Route::resource('/contactanos', 'ContactoController');
 
-Route::get('/mision', 'MisionController@index')->name('mision');
 
-Route::get('/monitoreoAmbiental', 'MonitoreoAmbientalController@index')->name('monitoreoAmbiental');
-
-Route::get('/monitoreoOcupacional', 'MonitoreoOcupacionalController@index')->name('monitoreoOcupacional');
-
-Route::get('/asistenciaTecnica', 'AsistenciaController@index')->name('asistenciaTecnica');
-
-Route::get('/PSST', 'PsstController@index')->name('PSST');
-
-Route::get('/diagnosticoIntegrales', 'DiagnosticoController@index')->name('diagnosticoIntegrales');
-
-Route::get('/calculoCargaFuego', 'CalculoCargaController@index')->name('calculoCargaFuego');
-
-Route::get('/campoEntrenamiento', 'CampoEntrenamientoController@index')->name('campoEntrenamiento');
-
-Route::get('/cursos', 'CursosController@index')->name('cursos');
-
-Route::get('/noticias', 'NoticiasController@index')->name('noticias');
-
-Route::get('/contactos', 'ContactanosController@index')->name('contactos');
+Route::middleware(['auth'])->group(function () {
+    Route::resource('/home', 'HomeController@create');
+});

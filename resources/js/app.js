@@ -3,7 +3,7 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
+AOS.init();
 require('./bootstrap');
 
 window.Vue = require('vue');
@@ -18,6 +18,7 @@ require('../templates/vendor/venobox/venobox.min.js');
 require('../templates/vendor/owl.carousel/owl.carousel.min.js');
 require('../templates/vendor/isotope-layout/isotope.pkgd.min.js');
 require('../templates/vendor/aos/aos.js'); 
+require('../templates/dist/aos'); 
 
 /**
  * The following block of code may be used to automatically register your

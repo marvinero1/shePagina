@@ -1,15 +1,17 @@
 @extends('layouts.main')
 
 @section('content')
+<br><br><br><br>
 <section id="work-process" class="work-process">
-    <div class="container"><br><br><br><br><br>
+    <div class="container">
         <div class="row content">
-            <div class="col-md-5">
+
+            <div class="col-md-5" data-aos="fade-right">
                 <img src="/images/work-process-1.png" class="img-fluid" alt="">
             </div>
             <br>
-            <div class="col-md-7 pt-4 ">
-                <h2>Misión</h2>
+            <div class="col-md-7 pt-4" data-aos="fade-left">
+                <h2>Mision</h2>
                 <br>
                 <p class="font-italic">
                     Nuestra misión es ser la empresa líder en la aplicación, difusión,
@@ -22,16 +24,18 @@
         </div>
 
         <div class="row content">
-            <div class="col-md-5 order-1 order-md-2">
-                <img src="images/work-process-4.png" class="img-fluid" alt="">
+            <div class="col-md-5 order-1 order-md-2" data-aos="fade-left">
+                <img src="/images/work-process-4.png" class="img-fluid" alt="">
             </div>
-            <div class="col-md-7 pt-5 order-2 order-md-1">
-                <h2>Visión</h2>
+            <div class="col-md-7 pt-5 order-2 order-md-1" data-aos="fade-right">
+                <h2>Vision</h2>
                 <br>
                 <p class="font-italic">
                     Nos proyectamos a ser la empresa de vanguardia de Seguridad
                     Integral y Medio Ambiente. A la luz de nuevos tiempos que proponen
-                    nuevos cambios y nuevas tecnologías.</p>
+                    nuevos cambios y nuevas tecnologías
+                </p>
+
             </div>
         </div>
     </div>
