@@ -15,7 +15,11 @@
             <form action="{{route('noticias.store')}}" method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
+                        <label><strong>Titulo Noticia *</strong></label>
+                        <input type="text" class="form-control" placeholder="Descripcion Noticia" name="titulo" required>
+                    </div>
+                    <div class="col-md-6">
                         <label><strong>Descripción Noticia *</strong></label>
                         <input type="text" class="form-control" placeholder="Descripcion Noticia" name="descripcion" required>
                     </div>
@@ -50,7 +54,8 @@
                     </div>
                 </div><br>           
                 <div class="row">
-                    <div class="col-sm-6" >
+                    <div class="col-sm-4" >
+                        <label><strong>Imagen Portada</strong></label>
                         <label for="file-upload" class="custom-file-upload" style="text-align: center;">
                             <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
                             <strong>Imagen Portada</strong>
@@ -58,13 +63,19 @@
                         <p><strong>Sugerencia:</strong> Para una mejor visualizacion se recomienda<strong> 1500 × 1125 pixels</strong></p> 
                         <input id="file-upload" type="file" name="imagen_portada">
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
+                        <label><strong>Imagen Seccion</strong></label>
                         <label for="file-upload1" class="custom-file-upload" style="text-align: center;">
                             <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
                             <strong>Imagen Seccion</strong>
                         </label>
                         <p><strong>Sugerencia:</strong> Para una mejor visualizacion se recomienda<strong> 1500 × 1125 pixels</strong></p> 
                         <input id="file-upload1" type="file" name="imagen_seccion">
+                    </div>
+                    <div class="col-sm-4">
+                        <label><strong>Autor Noticia</strong></label>
+                        <input type="text" class="form-control" placeholder="Autor" name="autor">
+                        
                     </div>
                 </div>
                 <div class="row">

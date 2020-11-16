@@ -35,13 +35,11 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 </head>
-
 <body>
-
     @include('layouts.header')
-    <main id="main">
+    
         @yield('content')
-    </main>
+    
     @include('layouts.footer')
 </body>
 <script>

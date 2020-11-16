@@ -15,7 +15,11 @@ class MoniAmbientalController extends Controller
      */
     public function index(Request $request)
     {
-        return view('ambiental.index');
+        $titulo = $request->get('buscarpor');
+
+        $moniAmbiental = MoniAmbiental::where('titulo','like',"%$titulo%")->latest()->paginate(10);
+
+        return view('ambiental.index', compact('moniAmbiental'));
     }
 
     /**

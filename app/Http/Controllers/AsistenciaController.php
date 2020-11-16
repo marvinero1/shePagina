@@ -15,7 +15,10 @@ class AsistenciaController extends Controller
      */
     public function index(Request $request)
     {
-        return view('asistencia.index');
+        $titulo = $request->get('buscarpor');
+
+        $asistencia = Asistencia::where('titulo','like',"%$titulo%")->latest()->get();
+        return view('asistencia.index', compact('asistencia'));
     }
 
     /**

@@ -15,7 +15,11 @@ class CalCargaController extends Controller
      */
     public function index(Request $request)
     {
-        return view('carga.index');
+        $titulo = $request->get('buscarpor');
+
+        $calCarga = CalCarga::where('titulo','like',"%$titulo%")->latest()->get();
+
+        return view('carga.index', compact('calCarga'));
     }
 
     /**

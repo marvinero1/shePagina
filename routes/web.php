@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('inicio.index');
 });
 
 Auth::routes();
@@ -44,7 +44,10 @@ Auth::routes();
     
     Route::resource('/contactanos', 'ContactoController');
 
+    Route::resource('/index', 'IndexController');
+
+    Route::resource('/home', 'HomeController');
 
 Route::middleware(['auth'])->group(function () {
-    Route::resource('/home', 'HomeController@create');
+    
 });

@@ -15,7 +15,11 @@ class MoniOcupacionalController extends Controller
      */
     public function index(Request $request)
     {
-        return view('ocupacional.index');
+        $titulo = $request->get('buscarpor');
+
+        $moniOcupacional = MoniOcupacional::where('titulo','like',"%$titulo%")->latest()->paginate(10);
+
+        return view('ocupacional.index', compact('moniOcupacional'));
     }
 
     /**

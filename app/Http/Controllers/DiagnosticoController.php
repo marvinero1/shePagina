@@ -15,7 +15,10 @@ class DiagnosticoController extends Controller
      */
     public function index(Request $request)
     {
-        return view('diagnostico.index');
+        $titulo = $request->get('buscarpor');
+
+        $diagnostico = Diagnostico::where('titulo','like',"%$titulo%")->latest()->get();
+        return view('diagnostico.index', compact('diagnostico'));
     }
 
     /**

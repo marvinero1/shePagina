@@ -15,7 +15,11 @@ class CursoController extends Controller
      */
     public function index(Request $request)
     {
-        return view('cursos.index');
+        $titulo = $request->get('buscarpor');
+
+        $curso = Curso::where('titulo','like',"%$titulo%")->latest()->paginate(10);
+
+        return view('cursos.index', compact('curso'));
     }
 
     /**

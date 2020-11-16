@@ -15,7 +15,11 @@ class NoticiaController extends Controller
      */
     public function index(Request $request)
     {
-        return view('noticias.index');
+        $descripcion = $request->get('buscarpor');
+
+        $noticia = Noticia::where('descripcion','like',"%$descripcion%")->latest()->paginate(10);
+
+        return view('noticias.index', compact('noticia'));
     }
 
     /**
@@ -44,6 +48,8 @@ class NoticiaController extends Controller
         $imagen_portada = null;
 
         $request->validate([
+            'titulo' => 'required',
+            'autor' => 'required',
             'descripcion' => 'required',
             'sec_1' => 'required',
             'descripcion_sec_1' => 'required',
@@ -65,13 +71,15 @@ class NoticiaController extends Controller
             }
            
             Noticia::create([
+                'titulo' => $request->titulo,
+                'autor' => $request->autor,
                 'descripcion' => $request->descripcion,
                 'sec_1' => $request->sec_1,
                 'sec_2' => $request->sec_2,
                 'sec_3' => $request->sec_3,
-                'descripcion_sec_1' => $request->sec_3,
-                'descripcion_sec_2' => $request->sec_3,
-                'descripcion_sec_3' => $request->sec_3,
+                'descripcion_sec_1' => $request->descripcion_sec_1,
+                'descripcion_sec_2' => $request->descripcion_sec_2,
+                'descripcion_sec_3' => $request->descripcion_sec_3,
                 
                 'imagen_portada' => '/images/noticia/' .$imageName,
                 'imagen_seccion' => '/images/noticia/' .$imagen_seccionName,

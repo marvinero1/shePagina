@@ -16,7 +16,7 @@ class CreateCalCargasTable extends Migration
         Schema::create('cal_cargas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
-            $table->string('descripcion');
+            $table->string('descripcion',1000);
             $table->string('imagen')->nullable();
             $table->softDeletes();
             $table->timestamps();

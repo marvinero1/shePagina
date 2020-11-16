@@ -15,6 +15,10 @@
             <ul class="navbar-nav ml-auto">
                 <div id="mySidebar" class="sidebar">
                     <h5><strong>☰ SHE Consulting Group</strong></h5>
+                    <a href="{{ route('index.create') }}" class="a">
+                      <i class="fa fa-indent" aria-hidden="true"></i>
+                      <span>Index</span></a>
+
                     <a href="{{ route('asistenciaTecnica.create') }}" class="a">
                       <i class="fa fa-hand-lizard-o"></i>
                       <span>Asistencia Técnica</span></a>
@@ -108,7 +112,7 @@
     }
     
     .sidebar a {
-      padding: 9px 4px 25px 17px;
+      padding: 2px 4px 20px 17px;
       text-decoration: none;
       font-size: 18px;
       color: white;

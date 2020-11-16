@@ -15,14 +15,15 @@ class CreateNoticiasTable extends Migration
     {
         Schema::create('noticias', function (Blueprint $table) {
             $table->bigIncrements('id');
-            //$table->string('titulo');
-            $table->string('descripcion');
+            $table->string('titulo');
+            $table->string('autor');
+            $table->string('descripcion',1000);
             $table->string('sec_1');
             $table->string('sec_2')->nullable();
             $table->string('sec_3')->nullable();
-            $table->string('descripcion_sec_1');
-            $table->string('descripcion_sec_2')->nullable();
-            $table->string('descripcion_sec_3')->nullable();
+            $table->string('descripcion_sec_1',1000);
+            $table->string('descripcion_sec_2',1000)->nullable();
+            $table->string('descripcion_sec_3',1000)->nullable();
             $table->string('imagen_portada')->nullable();
             $table->string('imagen_seccion')->nullable();
             $table->softDeletes();

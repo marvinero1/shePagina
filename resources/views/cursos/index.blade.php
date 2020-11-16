@@ -3,33 +3,59 @@
 @section('content')
 <br><br><br><br>
 
-  <section id="features" class="features">
+<section id="features" class="features">
     <div class="container">
-      <div class="section-title" data-aos="fade-up">
-        <h2>Nuestros Cursos y Capacitaciones Empresariales</h2>
-        <p>En este catalogo pueden observar nuestros diferentes cursos y capacitaciones  </p>
-      </div>
+        <div class="section-title" data-aos="fade-up">
+            <h2>Nuestros Cursos y Capacitaciones Empresariales</h2>
+            <p>En este catalogo pueden observar nuestros diferentes cursos y capacitaciones </p>
+        </div>
+        <div class="row">
+            @foreach($curso as $instructoritem)
+            <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                <div class="card" style="background-image: url({{ $instructoritem->imagen }});">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $instructoritem->titulo }}</h5>
+                        <p class="card-text">{{ $instructoritem->descripcion }}</p>
+                        <button type="button" class="btn btn" data-toggle="modal"
+                            data-target="#exampleModal{{ $instructoritem->id }}"><i class="fa fa-plus"
+                                aria-hidden="true"></i> Mas Información</button>
+                    </div>
+                </div>
+            </div><br>
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal{{ $instructoritem->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">
+                                {{ $instructoritem->titulo }}</h5>
 
-      <div class="row">
-        <div class="col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-          <div class="card" style="background-image: url(/images/cursos/2.png);">
-            <div class="card-body">
-              <h5 class="card-title"><a href="cursos.html">Curso de primeros auxlios</a></h5>
-              <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua.</p>
-              <div class="read-more"><a href="cursos.html"><i class="icofont-arrow-right"></i> Read More</a></div>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{ $instructoritem->imagen }}" alt="imagenCurso" width="467px" height="280">
+                            <br><br>
+
+                            <div class="entry-content">
+                                <h3><strong>Contenido del Curso</strong></h3>
+                                <p>{{ $instructoritem->descripcion }}</p>
+
+                                <h4><strong>Instructor</strong></h4>
+                                <h3>{{ $instructoritem->instructor }}</h3>
+                                <p>{{ $instructoritem->descripcion }}</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
+            @endforeach
         </div>
-        <div class="col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="fade-up">
-          <div class="card" style="background-image: url(/images/cursos/3.png);">
-            <div class="card-body">
-              <h5 class="card-title"><a href="cursos.html">Manejo defencivo </a></h5>
-              <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem.</p>
-              <div class="read-more"><a href="cursos.html"><i class="icofont-arrow-right"></i> Read More</a></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section><!-- End Features Section -->
+</section>
 @endsection

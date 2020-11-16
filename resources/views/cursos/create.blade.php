@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label><strong>Titulo *</strong></label>
-                        <input type="text" class="form-control" placeholder="Titulo Asistencia" name="titulo" required>
+                        <input type="text" class="form-control" placeholder="Titulo Curso" name="titulo" required>
                     </div>
                     <div class="col-md-6">
                         <label><strong>Descripción *</strong></label>
@@ -72,7 +72,6 @@
             <table class="table table-striped table-hover">
                 <thead class="tabla">
                     <tr>
-                        <th style="text-align:center;">Id</th>
                         <th style="text-align:center;">Imagen</th>
                         <th style="text-align:center;">Titulo</th>
                         <th style="text-align:center;">Descripción</th>
@@ -84,7 +83,6 @@
                 <tbody>
                     @foreach($curso as $instructoritem)
                     <tr>
-                        <td style="text-align:center;">{{ $instructoritem->id }}</td>
                         @if($instructoritem->imagen == 'null')
                         <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen }}">
                                 <img img src="images/defaultBanco.jpg" class="img-thumbnail" alt="DPF" height="150px"

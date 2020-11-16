@@ -15,7 +15,11 @@ class PsstController extends Controller
      */
     public function index(Request $request)
     {
-        return view('psst.index');
+        $titulo = $request->get('buscarpor');
+
+        $psst = Psst::where('titulo','like',"%$titulo%")->latest()->paginate(10);
+
+        return view('PSST.index', compact('psst'));
     }
 
     /**

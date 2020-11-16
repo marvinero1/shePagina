@@ -1,135 +1,103 @@
 @extends('layouts.main')
 
 @section('content')
-<br><br>
- <!-- ======= Breadcrumbs ======= -->
- <section id="breadcrumbs" class="breadcrumbs">
+<br><br><br><br>
+<!-- ======= Breadcrumbs ======= -->
+<section id="breadcrumbs" class="breadcrumbs">
     <div class="breadcrumb-hero">
-      <div class="container">
-        <div class="breadcrumb-hero">
-          <h2>Blog de Noticias</h2>
-          <p> Aqui encontraras las noticias y notas mas importnates en el ambito de la seguridad industruial  </p>
+        <div class="container">
+            <div class="breadcrumb-hero">
+                <h2>Blog de Noticias</h2>
+                <p> Aqui encontraras las noticias y notas mas importnates en el ambito de la seguridad industruial </p>
+            </div>
         </div>
-      </div>
     </div>
-    
-  </section><!-- End Breadcrumbs -->
+</section><!-- End Breadcrumbs -->
 <br>
-  <!-- ======= Blog Section ======= -->
-  <section id="blog" class="blog">
+<!-- ======= Blog Section ======= -->
+<section id="blog" class="blog">
     <div class="container">
+        <div class="row">
+            @foreach($noticia as $instructoritem)
+            <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
+                <article class="entry">
+                    <div class="entry-img">
+                        <img src="{{ $instructoritem->imagen_portada }}" alt="noticiaImagen" class="img-fluid"
+                            width="350px">
+                    </div>
+                    <h2 class="entry-title"> {{ $instructoritem->sec_1 }}</h2>
+                    <div class="entry-meta">
+                        <ul>
+                            <li class="d-flex align-items-center"><i class="icofont-user"></i>
+                                {{ $instructoritem->autor }}</li>
+                            <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <time
+                                    datetime="2020-10-01">{{ $instructoritem->created_at }}</time></li>
+                        </ul>
+                    </div>
 
-      <div class="row">
-
-        <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-          <article class="entry">
-
-            <div class="entry-img">
-              <img src="/images/blog/1.jpg" alt="" class="img-fluid">
+                    <div class="entry-content">
+                        <p>{{ $instructoritem->descripcion }}</p>
+                        <button type="button" class="btn" data-toggle="modal"
+                            data-target="#exampleModal{{ $instructoritem->id }}">
+                            <i class="fa fa-plus" aria-hidden="true"></i> Mas Información</button>
+                    </div>
+                </article>
             </div>
+            {{-- MODAL --}}
+            <div class="modal fade" id="exampleModal{{ $instructoritem->id }}" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel" style="text-align:center;">
+                                {{ $instructoritem->titulo }}</h5>
 
-            <h2 class="entry-title">
-              <a href="blog-single.html">CBN celebró el Día Mundial de la Seguridad</a>
-            </h2>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <img src="{{ $instructoritem->imagen_portada }}" alt="imagenNoticia" width="467px" height="280">
+                            <br><br>
 
-            <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">Ivan Mendoza</a></li>
-                <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-10-01">octubre 1, 2020</time></a></li>
-              </ul>
+                            <div class="entry-content">
+                                <h3><strong>Contenido de la Noticia </strong></h3>
+                                <p>{{ $instructoritem->descripcion }}</p>
+
+                                {{-- SECCION 1 --}}
+                                <h4><strong>Secciones Noticia</strong></h4>
+                                <img src="{{ $instructoritem->imagen_seccion }}" alt="imagenNoticia" width="467px" height="280">
+                                <h3>{{ $instructoritem->sec_1 }}</h3>
+                                <p>{{ $instructoritem->descripcion_sec_1 }}</p>
+
+                                {{-- SECCION 2 --}}
+                                <h3>{{ $instructoritem->sec_2 }}</h3>
+                                <p>{{ $instructoritem->descripcion_sec_2 }}</p>
+
+                                {{-- SECCION 3 --}}
+                                <h3>{{ $instructoritem->sec_3 }}</h3>
+                                <p>{{ $instructoritem->descripcion_sec_3 }}</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
-
-            <div class="entry-content">
-              <p>
-                La Cervecería Boliviana Nacional (CBN) año tras año celebra el Día Mundial de la Seguridad realizando una feria educativa interna dirigida a sus trabajadores para que tomen consciencia de la seguridad que deben guardar durante el desarrollo de sus funciones.
-              </p>
-              <div class="read-more">
-                <a href="blog-single.html">Leer la nota</a>
-              </div>
-            </div>
-
-          </article><!-- End blog entry -->
+            @endforeach
         </div>
 
-        <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-          <article class="entry">
-
-            <div class="entry-img">
-              <img src="/images/blog/2.jpg" alt="" class="img-fluid">
-            </div>
-
-            <h2 class="entry-title">
-              <a href="blog-single.html">Gobernador critica a bomberos por trabajar en un carro sin SOAT</a>
-            </h2>
-
-            <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">John Doe</a></li>
-                <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">Jan 1, 2020</time></a></li>
-              </ul>
-            </div>
-
-            <div class="entry-content">
-              <p>
-                “No es cuestión de manejar sin SOAT (Seguro Obligatorio de Accidentes de Tránsito), ¿cómo manejan si saben que no tiene?”, dijo el gobernador de Cochabamba, Iván Canelas, al referirse al accidente que protagonizó, el lunes, un carro bombero.
-              </p>
-              <div class="read-more">
-                <a href="blog-single.html">Leer la nota</a>
-              </div>
-            </div>
-
-          </article><!-- End blog entry -->
+        <div class="blog-pagination" data-aos="fade-up">
+            <ul class="justify-content-center">
+                <li class="disabled"><i class="icofont-rounded-left"></i></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a>2</a></li>
+                <li><a>3</a></li>
+                <li><a><i class="icofont-rounded-right"></i></a></li>
+            </ul>
         </div>
-
-        <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
-          <article class="entry">
-
-            <div class="entry-img">
-              <img src="/images/blog/3.jpg" alt="" class="img-fluid">
-            </div>
-
-            <h2 class="entry-title">
-              <a href="blog-single.html">Los voraces incendios que Bolivia combate hace semanas y que ya afectaron a 600.000 hectáreas</a>
-            </h2>
-
-            <div class="entry-meta">
-              <ul>
-                <li class="d-flex align-items-center"><i class="icofont-user"></i> <a href="blog-single.html">Melany Mendoza</a></li>
-                <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <a href="blog-single.html"><time datetime="2020-01-01">agsoto 1, 2020</time></a></li>
-              </ul>
-            </div>
-
-            <div class="entry-content">
-              <p>
-                Los incendios forestales en Bolivia no dan tregua y ya afectaron a una superficie que es mucho mayor a la de sus ciudades más grandes como El Alto y Santa Cruz de la Sierra.
-              </p>
-              <div class="read-more">
-                <a href="blog-single.html">Leer la nota</a>
-              </div>
-            </div>
-
-          </article><!-- End blog entry -->
-        </div>
-
-        
-
-          </article><!-- End blog entry -->
-        </div>
-
-      </div>
-
-      <div class="blog-pagination" data-aos="fade-up">
-        <ul class="justify-content-center">
-          <li class="disabled"><i class="icofont-rounded-left"></i></li>
-          
-          <li class="active"><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#"><i class="icofont-rounded-right"></i></a></li>
-        </ul>
-      </div>
-
     </div>
-  </section><!-- End Blog Section -->
-
+</section>
 @endsection

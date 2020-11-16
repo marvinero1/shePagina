@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-md-6">
                         <label><strong>Titulo *</strong></label>
-                        <input type="text" class="form-control" placeholder="Titulo PSST" name="titulo" required>
+                        <input type="text" class="form-control" placeholder="Titulo Monitoreo" name="titulo" required>
                     </div>
                     <div class="col-md-6">
                         <label><strong>Descripción *</strong></label>
