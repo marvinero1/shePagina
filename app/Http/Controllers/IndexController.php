@@ -13,9 +13,13 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        
+    public function index(Request $request){
+
+        $imagen = $request->get('buscarpor');
+
+        $index = Index::where('imagen','like',"%$imagen%")->latest()->get();
+
+        return view('incio.index', compact('index'));
     }
 
     /**
@@ -23,13 +27,12 @@ class IndexController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
-    {
-        $imagen = $request->get('buscarpor');
+    public function create(Request $request){
 
+        $imagen = $request->get('buscarpor');
         $index = Index::where('imagen','like',"%$imagen%")->latest()->get();
 
-        return view('index.create', compact('index'));
+        return view('inicio.create', compact('index'));
     }
 
     /**

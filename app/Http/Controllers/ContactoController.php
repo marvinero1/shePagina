@@ -48,7 +48,7 @@ class ContactoController extends Controller
         Contacto::create($request->all());
 
         //  Send mail to admin
-        Mail::to('mail', array(
+        Mail::send('mail', array(
             'nombre' => $request->get('nombre'),
             'email' => $request->get('email'),
             'asunto' => $request->get('asunto'),

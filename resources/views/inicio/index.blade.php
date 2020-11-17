@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<section id="hero">
+<section id="hero" style="background-image: url(/images/fondo/3.jpg);background-size: cover;position: relative;">
     <div class="hero-container">
       <h1>Bienvenidos a S.H.E</h1>
       <h2> Visita nuestro nuevo campo de entrenamiento </h2>
@@ -13,7 +13,6 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
-
         <div class="row justify-content-end">
           <div class="col-lg-11">
             <div class="row justify-content-end">
@@ -50,11 +49,12 @@
         </div>
 
         <div class="row">
-
-          <div class="col-lg-6 video-box align-self-baseline">
-            <img src="/images/fondo/8.jpg" class="img-fluid" alt="">
-            <a target="_blank" href="https://www.youtube.com/watch?v=wbnepcJ2hIY" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-          </div>
+          {{-- <div class="col-lg-6 video-box align-self-baseline">
+            
+              <img src="{{ $instructoritem->imagen }}" class="img-fluid" alt="">
+              <a target="_blank" href="{{ $instructoritem->video_url }}" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+           
+          </div> --}}
         
           <div class="col-lg-6 pt-3 pt-lg-0 content">
             <h3>Conoce mas de nuestros Servicios</h3>

@@ -19,14 +19,13 @@
                         <label><strong>URL Video *</strong></label>
                         <input type="text" class="form-control" placeholder="URL Video" name="video_url" required>
                     </div>
-                     <div class="col-sm-6" >
-                        <strong>Imagen</strong> <br>
+                     <div class="col-sm-6">
+                        <strong>Imagen</strong><br>
                         <label for="file-upload" class="custom-file-upload" style="text-align: center;">
                             <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
                             <strong>Imagen Portada</strong>
                         </label>
                         <p><strong>Sugerencia:</strong> Para una mejor visualizacion se recomienda<strong> 5400 × 3600 pixels</strong></p> 
-
                         <input id="file-upload" type="file" name="imagen" required>
                     </div>
                     <div class="col-sm-12">
