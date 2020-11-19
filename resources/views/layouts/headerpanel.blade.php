@@ -19,6 +19,10 @@
                       <i class="fa fa-indent" aria-hidden="true"></i>
                       <span>Index</span></a>
 
+                    <a href="{{ route('resumen.create') }}" class="a">
+                      <i class="fa fa-hand-lizard-o"></i>
+                      <span>Historia</span></a>
+
                     <a href="{{ route('asistenciaTecnica.create') }}" class="a">
                       <i class="fa fa-hand-lizard-o"></i>
                       <span>Asistencia Técnica</span></a>
