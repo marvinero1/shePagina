@@ -22,12 +22,15 @@
 <!-- ======= Portfolio Details Section ======= -->
 <section id="portfolio-details" class="portfolio-details">
     <div class="container">
-        <div class="portfolio-details-container">
-            <div class="col-lg-12 video-box align-self-baseline">
-                <embed src="/images/fondo/Mi video.mp4" autostart=true height="620" width="1100" />
+        @foreach($campEntrenamiento as $instructoritem)
+            <div class="portfolio-details-container">
+                <div class="col-lg-12 video-box align-self-baseline">
+                    <a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen }}">
+                        <embed src="{{ $instructoritem->video }}" autostart=true height="620" width="1100"/>
+                    </a>
+                </div>
             </div>
-        </div>
-d
+        @endforeach
         <div class="portfolio-description">
             <h2>Diferentes Areas de Practica Especializada</h2>
             <p>
@@ -37,7 +40,7 @@ d
             </p>
         </div>
 
-        <div id="demo" class="carousel slide" data-ride="carousel" style="width: 80%; !important">
+        <div id="demo" class="carousel slide" data-ride="carousel" style="width: 100%; !important">
             <!-- Indicators -->
             <ul class="carousel-indicators">
                 <li data-target="#demo" data-slide-to="0" class="active"></li>

@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Historia;
+use App\Crecimiento;
+use App\Paso;
+use App\Resumen;
 use Illuminate\Http\Request;
 
 class HistoriaController extends Controller
@@ -12,9 +15,14 @@ class HistoriaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('historia.index');
+    public function index(){
+        
+        $crecimiento = Crecimiento::get();
+        $paso = Paso::get();
+        $resumen = Resumen::get();
+
+        return view('historia.index', compact('crecimiento','paso','resumen'));
+        
     }
 
     /**

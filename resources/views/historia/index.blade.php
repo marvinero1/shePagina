@@ -17,26 +17,19 @@
   <section id="about" class="about">
     <div class="container" data-aos="fade-up">   
       <br>
-      <div class="row">
-        <div class="col-lg-6 video-box align-self-baseline">
-          <img src="/images/fondo/6.jpg" class="img-fluid" alt="">
-          <a href="https://www.youtube.com/watch?v=cRzCN5xnpvI" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-        </div>
-
-        <div class="col-lg-6 pt-3 pt-lg-0 content">        
-          <h3>Resumen</h3>
-          
-          <p>Nos establecimos en cochabamba como una pequeña consultora de seguridad industrial y medio ambiente, la cual fue creciento en vase a las nesesidades del mercado.
+      @foreach($resumen as $instructoritem)
+        <div class="row">
+          <div class="col-lg-6 video-box align-self-baseline">
+            <img src="{{ $instructoritem->imagen }}" class="img-fluid" alt="imagenResumen" width="100%">
+            <a href="{{ $instructoritem->video_url }}" target="_blank" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+          </div>
+          <div class="col-lg-6 pt-3 pt-lg-0 content">        
+            <h3>{{ $instructoritem->titulo }}</h3>
             
-          </p>
-          <p>En 17 años de actividad en nuestro medio S.H.E. Consulting Group
-              S.R.L. amplía sus servicios y actividades y pasa de ser una empresa
-              de servicios locales a una de prestación de servicios a nivel
-              Nacional.</p>
-            
-          
+            <p>{{ $instructoritem->descripcion }}</p>
+          </div>
         </div>
-      </div>
+      @endforeach
     </div>
   </section><!-- End About Section -->
 
@@ -48,22 +41,23 @@
         <h2>Primeros pasos</h2>
         <p> Nuestros primeros en el mercado marcaron el rumbo que tomaria la empresa brindado un sevicio espercializado, y dejando de lado el sericio en general, enfocandonos en temas poco vistos en bolivia.</p>
       </div>
+      @foreach($paso as $instructoritem)
+        <div class="row content">
+          <div class="col-md-5" data-aos="fade-right">
+            <img src="{{ $instructoritem->imagen }}" class="img-fluid" alt="imgPrimerosPasos" width="100%">
+          </div>
+          <div class="col-md-7 pt-4" data-aos="fade-left">
+            <h3></h3>
+            <p class="font-italic">{{ $instructoritem->titulo }}</p>
+            <ul>
+              <li><i class="icofont-check"></i> {{ $instructoritem->texto1 }}</li>
+              <li><i class="icofont-check"></i> {{ $instructoritem->texto2 }}</li>
+              <li><i class="icofont-check"></i> {{ $instructoritem->texto3 }}</li>
 
-      <div class="row content">
-        <div class="col-md-5" data-aos="fade-right">
-          <img src="images/fondo/9.jfif" class="img-fluid" alt="">
+            </ul>
+          </div>
         </div>
-        <div class="col-md-7 pt-4" data-aos="fade-left">
-          <h3></h3>
-          <p class="font-italic">
-          La Familia S.H.E.
-          </p>
-          <ul>
-            <li><i class="icofont-check"></i> comensamos con un pequeño grupo de trabajo, junto al cual empesamos a crecer el cual se convirtio en nuetra familia, la familia S.H.E.</li>
-            <li><i class="icofont-check"></i> Estamos orgullos de haber prestado sericios con personal, altamente calificado y reconocido en el medio, trabajando con personal internacional y nacional. </li>
-          </ul>
-        </div>
-      </div>
+      @endforeach
   </section><!-- End Work Process Section -->
 
   <!-- ======= Our Skills Section ======= -->
@@ -73,22 +67,22 @@
       <div class="section-title" data-aos="fade-up">
         <h2>Cremimiento Empresarial</h2>
       </div>
-
-      <div class="row">
-        <div class="col-lg-6" data-aos="fade-right">
-          <img src="/images/campo/2.jpg" class="img-fluid" alt="">
+      @foreach($crecimiento as $instructoritem)
+        <div class="row">
+          <div class="col-lg-6" data-aos="fade-right">
+            <img src="{{ $instructoritem->imagen }}" class="img-fluid" alt="imagenCrecimiento" width="100%">
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
+              <p class="font-italic">{{ $instructoritem->titulo }}</p><br>
+              
+              <ul>
+                <li><i class="icofont-check"></i> {{ $instructoritem->texto1 }}</li>
+              <li><i class="icofont-check"></i> {{ $instructoritem->texto2 }}</li>
+              <li><i class="icofont-check"></i> {{ $instructoritem->texto3 }}</li>
+              </ul>
+          </div>
         </div>
-        <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-         
-            <p class="font-italic">
-              Con el paso del tiempo , mejoramos muchos de nuestros servicios, entendiendo mejor al mercado y sus nesesidades, abriendo nuevas ramas dentro de la empresa para brindarle un servicio de calidad
-            </p><br>
-            <ul>
-              <li><i class="icofont-check"></i> Con el tiempo  la empresa creo un fuerte lazo con la comunidad de segurida y medio ambiente</li>
-              <li><i class="icofont-check"></i> Siendo nuestra empresa empresa ahora un referente en la comunidad, estamos agradecidos y orgullos de formar parte de la misma</li>
-            </ul>
-        </div>
-      </div>
+      @endforeach
     </div>
   </section><!-- End Our Skills Section -->
 
