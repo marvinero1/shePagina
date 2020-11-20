@@ -6,8 +6,7 @@
     <div class="container">
         <div class="section-title">
             <h2>Monitoreos Ocupacionales</h2>
-            <p> Nos permite reconocer, evaluar y controlar los factores de riesgo ocupacional generados en el lugar de
-                trabajo con el fin de prevenir las enfermedades profesionale</p>
+            <p> El monitoreo ambiental consiste en la realización de mediciones y/ u observaciones específicas, las cuales son contrastadas con parámetros nacionales o internacionales.</p>
         </div><br>
 
         <div class="row">

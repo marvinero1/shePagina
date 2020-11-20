@@ -14,12 +14,10 @@
                 <h2>Mision</h2>
                 <br>
                 <p class="font-italic">
-                    Nuestra misión es ser la empresa líder en la aplicación, difusión,
-                    transferencia de conocimiento y cultura de seguridad integral y
-                    Medio Ambiente.</p>
-                <p>Creada para contribuir al progreso y desarrollo de nuestra región y
-                    se extiende a través de resultados de calidad, responsabilidad y
-                    compromiso.</p>
+                Es ser la empresa líder en la aplicación, difusión, transferencia de conocimiento y cultura de seguridad integral y Medio Ambiente. 
+Creada para contribuir al progreso y desarrollo de nuestra región y se extiende a través de resultados de calidad, responsabilidad y compromiso.
+</p>
+                
             </div>
         </div>
 
@@ -31,11 +29,23 @@
                 <h2>Vision</h2>
                 <br>
                 <p class="font-italic">
-                    Nos proyectamos a ser la empresa de vanguardia de Seguridad
-                    Integral y Medio Ambiente. A la luz de nuevos tiempos que proponen
-                    nuevos cambios y nuevas tecnologías
+                Nos proyectamos a ser la empresa de vanguardia de Seguridad Integral y Medio Ambiente. A la luz de nuevos tiempos que proponen nuevos cambios y nuevas tecnologías.
                 </p>
 
+            </div>
+        </div>
+        <div class="row content">
+
+            <div class="col-md-5" data-aos="fade-right">
+                <img src="/images/work-process-3.png" class="img-fluid" alt="">
+            </div>
+            <br>
+            <div class="col-md-7 pt-4" data-aos="fade-left">
+                <h2>Politicas</h2>
+                <br>
+                <p class="font-italic">
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, ipsum architecto. Et, corrupti voluptates optio, numquam nobis dicta, consectetur facilis provident quas cupiditate ducimus temporibus expedita reprehenderit nam sint ab.</p>
+            
             </div>
         </div>
     </div>

@@ -8,7 +8,7 @@
 
     <div class="section-title" data-aos="fade-up">
       <h2>Procedimientos Psst</h2>
-      <p> El Programa de Seguridad y Salud en el Trabajo se constituye en el documento que regirá de forma interna en cada Empresa </p>
+      <p> El Ministerio de Trabajo, a través de la Resolución Ministerial N° 1411/18 de 27 de diciembre de 2018, aprobó la Norma Técnica de Seguridad NTS-009/18 para la presentación y aprobación de los Programas de Seguridad y Salud en el Trabajo (PSST); desarrollamos los programas de seguridad a medida de su empresa. </p>
     </div>
     <br>
     <div class="row">

@@ -6,8 +6,9 @@
     <div class="container">
         <div class="section-title" data-aos="fade-up">
             <h2>Monitoreos Ambientales</h2>
-            <p> Se realiza a efectos de medir la presencia y concentración de contaminantes en el ambiente, así como el
-                estado de conservación de los recursos naturales </p>
+            <p> Todo emprendimiento genera algún tipo de impacto en el medioambiente. La realización de la medición o monitoreo ambiental de ese impacto brindará la información necesaria para adoptar medidas preventivas.
+El monitoreo ambiental consiste en la realización de mediciones y/ u observaciones específicas, las cuales son contrastadas con parámetros nacionales o internacionales.
+</p>
         </div>
         <br>
         <div class="row">

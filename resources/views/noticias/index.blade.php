@@ -8,7 +8,7 @@
         <div class="container">
             <div class="breadcrumb-hero">
                 <h2>Blog de Noticias</h2>
-                <p> Aqui encontraras las noticias y notas mas importnates en el ambito de la seguridad industruial </p>
+                <p> Las noticias y notas mas importnates en el ambito de la seguridad industruial </p>
             </div>
         </div>
     </div>
