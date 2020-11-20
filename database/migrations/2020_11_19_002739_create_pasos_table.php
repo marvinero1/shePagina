@@ -16,6 +16,9 @@ class CreatePasosTable extends Migration
         Schema::create('pasos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
+            $table->string('texto1')->nullable();
+            $table->string('texto2')->nullable();
+            $table->string('texto3')->nullable();
             $table->string('descripcion');
             $table->string('imagen');
             $table->softDeletes();

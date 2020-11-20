@@ -16,47 +16,59 @@
                 <div id="mySidebar" class="sidebar">
                     <h5><strong>☰ SHE Consulting Group</strong></h5>
                     <a href="{{ route('index.create') }}" class="a">
-                      <i class="fa fa-indent" aria-hidden="true"></i>
+                      <i class="fa fa-indent" aria-hidden="true"></i>&nbsp;
                       <span>Index</span></a>
 
                     <a href="{{ route('resumen.create') }}" class="a">
-                      <i class="fa fa-hand-lizard-o"></i>
-                      <span>Historia</span></a>
+                      <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
+                      <span>Resumen</span></a>
+
+                    <a href="{{ route('pasos.create') }}" class="a">
+                      <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
+                      <span>Primeros Pasos</span></a>
+
+                    <a href="{{ route('crecimiento.create') }}" class="a">
+                      <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
+                      <span>Crecimiento Empresarial</span></a>
 
                     <a href="{{ route('asistenciaTecnica.create') }}" class="a">
-                      <i class="fa fa-hand-lizard-o"></i>
+                      <i class="fa fa-link" aria-hidden="true"></i>&nbsp;
                       <span>Asistencia Técnica</span></a>
                     
                     <a href="{{ route('CalCarga.create') }}" class="a">
-                      <i class="fa fa-fire" aria-hidden="true"></i>
+                      <i class="fa fa-fire" aria-hidden="true"></i>&nbsp;
                       <span>Calculo Carga de Fuego</span></a>
+
+                    <a href="{{ route('campoEntrenamiento.create') }}" class="a">
+                      <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;
+                      <span>Campo Entrenamiento</span></a>
                    
                     <a href="{{ route('diagnosticoIntegrales.create') }}" class="a">
-                      <i class="fa fa-file-text" aria-hidden="true"></i>
+                      <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;
                       <span>Diagnóstico Integral</span></a>
                     
                     <a href="{{ route('PSST.create') }}" class="a">
-                      <i class="fa fa-free-code-camp" aria-hidden="true"></i>
+                      <i class="fa fa-free-code-camp" aria-hidden="true"></i>&nbsp;
                       <span>PSST</span></a>
 
                     <a href="{{ route('MoniAmbiental.create') }}" class="a">
-                      <i class="fa fa-caret-right" aria-hidden="true"></i>
+                      <i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;
                       <span>Monitoreo Ambiental</span></a>
 
                     <a href="{{ route('MoniOcupacional.create') }}" class="a">
-                      <i class="fa fa-caret-right" aria-hidden="true"></i>
+                      <i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;
                       <span>Monitoreo Ocupacional</span></a>
 
                     <a href="{{ route('cursos.create') }}" class="a">
-                      <i class="fa fa-graduation-cap" aria-hidden="true"></i>
+                      <i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;
                       <span>Cursos</span></a>
 
                     <a href="{{ route('noticias.create') }}" class="a">
-                      <i class="fa fa-paper-plane" aria-hidden="true"></i>
+                      <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;
                       <span>Noticias</span></a>
 
                     <a href="{{ route('asistenciaTecnica.create') }}" class="a">
-                      <i class="fa fa-user" aria-hidden="true"></i>
+                      <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
                       <span>Usuarios</span></a>
                       <button href="javascript:void(0)" class="openbtn" onclick="closeNav()"
                       style="background: #94c045 !important;color: white">X Cerrar</button> 
@@ -157,15 +169,24 @@
       padding: 16px;
     }
     
-    /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
     @media screen and (max-height: 450px) {
       .sidebar {padding-top: 15px;}
       .sidebar a {font-size: 18px;}
     }
+    .dropdown-container {
+      display: none;
+      background-color: #262626;
+      padding-left: 8px;
+    }
+
+    .fa-caret-down {
+      float: right;
+      padding-right: 8px;
+    }
     </style>
 <script>
     function openNav() {
-      document.getElementById("mySidebar").style.width = "259px";
+      document.getElementById("mySidebar").style.width = "265px";
       document.getElementById("main").style.marginLeft = "250px";
     }
     

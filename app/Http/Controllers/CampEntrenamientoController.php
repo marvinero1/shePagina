@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\CampEntrenamiento;
 use Illuminate\Http\Request;
+use Session;
 
 class CampEntrenamientoController extends Controller
 {
@@ -12,9 +13,10 @@ class CampEntrenamientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
-        return view('campoEntrenamiento.index');
+    public function index(Request $request){
+        $campEntrenamiento = CampEntrenamiento::get();
+
+        return view('campoEntrenamiento.index', compact('campEntrenamiento'));
     }
 
     /**
@@ -24,7 +26,9 @@ class CampEntrenamientoController extends Controller
      */
     public function create(Request $request)
     {
-        //
+        $campEntrenamiento = CampEntrenamiento::get();
+
+        return view('campoEntrenamiento.create', compact('campEntrenamiento'));
     }
 
     /**
@@ -33,9 +37,32 @@ class CampEntrenamientoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+
+        $video = null;
+        
+        $request->validate([
+            'video' => 'required',
+        ]);
+
+        if(request()->has('video')){
+            $imagesUploaded = request()->file('video');
+            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
+            $imagenpath = public_path('/images/campoEntrenamiento/');
+            $imagesUploaded->move($imagenpath, $imageName);
+
+            CampEntrenamiento::create([
+                
+                'video' => '/images/campoEntrenamiento/' .$imageName,
+            ]);
+
+            Session::flash('message','Campo Entrenamiento creado exisitosamente!');
+            return redirect()->route('campoEntrenamiento.create'); 
+        }else{
+            Session::flash('error','Campo Entrenamiento no pudo registrarse!');
+            return redirect()->route('campoEntrenamiento.create'); 
+        }
+        
     }
 
     /**
@@ -78,8 +105,14 @@ class CampEntrenamientoController extends Controller
      * @param  \App\CampEntrenamiento  $campEntrenamiento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(CampEntrenamiento $campEntrenamiento)
-    {
-        //
+    public function destroy($id){
+
+        $campEntrenamiento = CampEntrenamiento::findOrFail($id);
+
+        $campEntrenamiento->delete();
+
+        Session::flash('message','Campo Entrenamiento eliminado exitosamente!');
+        return redirect()->route('campoEntrenamiento.create');
+        
     }
 }

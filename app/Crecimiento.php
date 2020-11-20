@@ -21,5 +21,8 @@ class Crecimiento extends Model
     protected $fillable = [ 'titulo',
                             'descripcion',
                             'imagen',
+                            'texto1',
+                            'texto2',
+                            'texto3',
                             ]; 
 }

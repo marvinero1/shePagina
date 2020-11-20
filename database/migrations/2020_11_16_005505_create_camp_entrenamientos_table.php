@@ -14,7 +14,8 @@ class CreateCampEntrenamientosTable extends Migration
     public function up()
     {
         Schema::create('camp_entrenamientos', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
+            $table->string('video');
             $table->timestamps();
         });
     }

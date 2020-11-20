@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Crecimiento;
 use Illuminate\Http\Request;
+use Session;
 
 class CrecimientoController extends Controller
 {
@@ -26,7 +27,7 @@ class CrecimientoController extends Controller
     {
         $crecimiento = Crecimiento::get();
 
-        return view('crecimiento.create', compact('crecimiento'));
+        return view('crecimiento.index', compact('crecimiento'));
     }
 
     /**
@@ -45,7 +46,7 @@ class CrecimientoController extends Controller
             'descripcion' => 'required',
             'imagen' => 'required',
         ]);
-        dd($request);
+        
         if(request()->has('imagen')){
             $imagesUploaded = request()->file('imagen');
             $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
@@ -54,16 +55,19 @@ class CrecimientoController extends Controller
 
             Crecimiento::create([
                 'titulo' => $request->titulo,
+                'texto1' => $request->texto1,
+                'texto2' => $request->texto2,
+                'texto3' => $request->texto3,
                 'descripcion' => $request->descripcion,
                 
                 'imagen' => '/images/crecimiento/' .$imageName,
             ]);
 
             Session::flash('message','Seccion de Crecimiento creado exisitosamente!');
-            return redirect()->route('resumen.create'); 
+            return redirect()->route('crecimiento.create'); 
         }else{
             Session::flash('error','Seccion de Crecimiento no pudo registrarse!');
-            return redirect()->route('resumen.create'); 
+            return redirect()->route('crecimiento.create'); 
         } 
     }
 
@@ -107,8 +111,13 @@ class CrecimientoController extends Controller
      * @param  \App\Crecimiento  $crecimiento
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Crecimiento $crecimiento)
+    public function destroy($id)
     {
-        //
+        $crecimiento = Crecimiento::findOrFail($id);
+
+        $crecimiento->delete();
+
+        Session::flash('message','Crecimiento eliminado exitosamente!');
+        return redirect()->route('crecimiento.create');
     }
 }

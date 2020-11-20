@@ -27,7 +27,7 @@ class PasoController extends Controller
     {
         $paso = Paso::get();
 
-        return view('resumen.create', compact('paso'));
+        return view('pasos.index', compact('paso'));
     }
 
     /**
@@ -37,37 +37,38 @@ class PasoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        echo "asdasdasdas";
         
+        $imagen = null;
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
             'imagen' => 'required',
-            
         ]);
-        $imagen = null;
-        dd($request);
         
-        // if(request()->has('imagen')){
-        //     $imagesUploaded = request()->file('imagen');
-        //     $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-        //     $imagenpath = public_path('/images/paso/');
-        //     $imagesUploaded->move($imagenpath, $imageName);
+       
+        if(request()->has('imagen')){
+            $imagesUploaded = request()->file('imagen');
+            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
+            $imagenpath = public_path('/images/pasos/');
+            $imagesUploaded->move($imagenpath, $imageName);
 
-        //     Paso::create([
-        //         'titulo' => $request->titulo,
-        //         'descripcion' => $request->descripcion,
+            Paso::create([
+                'titulo' => $request->titulo,
+                'texto1' => $request->texto1,
+                'texto2' => $request->texto2,
+                'texto3' => $request->texto3,
+                'descripcion' => $request->descripcion,
                 
-        //         'imagen' => '/images/paso/' .$imageName,
-        //     ]);
+                'imagen' => '/images/pasos/' .$imageName,
+            ]);
 
-        //     Session::flash('message','Seccion de Primeros Pasos creado exisitosamente!');
-        //     return redirect()->route('resumen.create'); 
-        // }else{
-        //     Session::flash('error','Seccion de Primeros Pasos no pudo registrarse!');
-        //     return redirect()->route('resumen.create'); 
-        // } 
+            Session::flash('message','Seccion de Primeros Pasos creado exisitosamente!');
+            return redirect()->route('pasos.create'); 
+        }else{
+            Session::flash('error','Seccion de Primeros Pasos no pudo registrarse!');
+            return redirect()->route('pasos.create'); 
+        } 
     }
 
     /**
@@ -110,8 +111,13 @@ class PasoController extends Controller
      * @param  \App\Paso  $paso
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Paso $paso)
-    {
-        //
+    public function destroy($id){
+
+        $paso = Paso::findOrFail($id);
+
+        $paso->delete();
+
+        Session::flash('message','Paso eliminado exitosamente!');
+        return redirect()->route('pasos.create');
     }
 }

@@ -27,7 +27,7 @@ class ResumenController extends Controller
     {
         $resumen = Resumen::get();
 
-        return view('resumen.create', compact('resumen'));
+        return view('resumen.index', compact('resumen'));
     }
 
     /**
@@ -46,7 +46,7 @@ class ResumenController extends Controller
             'imagen' => 'required',
             'video_url' => 'required',
         ]);
-        dd($request);
+
         if(request()->has('imagen')){
             $imagesUploaded = request()->file('imagen');
             $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
