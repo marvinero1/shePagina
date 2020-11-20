@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Index;
 use Session;
 use Illuminate\Http\Request;
+use DB;
 
 class IndexController extends Controller
 {
@@ -15,11 +16,11 @@ class IndexController extends Controller
      */
     public function index(Request $request){
 
-        $imagen = $request->get('buscarpor');
+        // $index = DB::where('indices');
 
-        $index = Index::where('imagen','like',"%$imagen%")->latest()->get();
+        $index = DB::table('indices')->get();
 
-        return view('incio.index', compact('index'));
+        return view('index.index', compact('index'));
     }
 
     /**
@@ -32,7 +33,7 @@ class IndexController extends Controller
         $imagen = $request->get('buscarpor');
         $index = Index::where('imagen','like',"%$imagen%")->latest()->get();
 
-        return view('inicio.create', compact('index'));
+        return view('index.create', compact('index'));
     }
 
     /**

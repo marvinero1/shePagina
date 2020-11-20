@@ -13,8 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('inicio.index');
+Route::get('/index', function () {
+    return view('index.index');
 });
 
 Auth::routes();
@@ -35,6 +35,8 @@ Auth::routes();
     Route::resource('/noticias', 'NoticiaController');
     Route::resource('/contactanos', 'ContactoController');
     Route::resource('/index', 'IndexController');
+    Route::resource('/solucionesEspecificas', 'SoluEspecificaController');
+    Route::resource('/users', 'UserController');
     Route::resource('/home', 'HomeController');
 
 Route::middleware(['auth'])->group(function () {

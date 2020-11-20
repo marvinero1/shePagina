@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<section id="hero">
+<section id="hero" style="background-image: url(/images/fondo/3.jpg);background-size: cover;position: relative;">
     <div class="hero-container">
       <h1>Bienvenidos a S.H.E</h1>
       <h2> Visita nuestro nuevo campo de entrenamiento </h2>
@@ -13,7 +13,6 @@
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
       <div class="container">
-
         <div class="row justify-content-end">
           <div class="col-lg-11">
             <div class="row justify-content-end">
@@ -50,35 +49,30 @@
         </div>
 
         <div class="row">
-
-          <div class="col-lg-6 video-box align-self-baseline">
-            <img src="/images/fondo/8.jpg" class="img-fluid" alt="">
-            <a target="_blank" href="https://www.youtube.com/watch?v=wbnepcJ2hIY" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
-          </div>
-
+          @foreach($index as $instructoritem) 
+            <div class="col-lg-6 video-box align-self-baseline">
+                <img src="{{ $instructoritem->imagen }}" class="img-fluid" alt="">
+                <a target="_blank" href="{{ $instructoritem->video_url }}" class="venobox play-btn mb-4" data-vbtype="video" data-autoplay="true"></a>
+            </div>
+          @endforeach
           <div class="col-lg-6 pt-3 pt-lg-0 content">
             <h3>Conoce mas de nuestros Servicios</h3>
-            <p class="font-italic">
-              
-            S.H.E. Consulting Group S.R.L. consultora especializada en
+            <p class="font-italic"> S.H.E. Consulting Group S.R.L. consultora especializada en
             Gestión Salud, Seguridad Ocupacional y Gestión Medio Ambiental
             remonta su historia a 2003 como una consultora unipersonal ante
             la necesidad de gestionar en la sociedad puestos de trabajo más
-            seguro y equilibrados entre industria y medio ambiente.)
-            </p>
+            seguro y equilibrados entre industria y medio ambiente.</p>          
             <ul>
               <li><i class="bx bx-check-double"></i> Trabajo de calidad bajo normas nacionales e internacionales.</li>
               <li><i class="bx bx-check-double"></i> Equipos certificados</li>
               <li><i class="bx bx-check-double"></i> Personal Capacitado y con amplia experiencia</li>
               <li><i class="bx bx-check-double"></i> Trabajos a nivel nacional</li>
             </ul>
-            <p>
-              Durante su creciente desarrollo impulsado por el paulatino
+            <p>Durante su creciente desarrollo impulsado por el paulatino
               desarrollo y demanda de nuestro mercado y la captación de grandes
               proyectos además de los requerimientos generados por nuestros
               clientes, nace la necesidad de cambiar de unipersonal a una
-              organización S.R.L. 
-            </p>
+              organización S.R.L.</p>
           </div>
         </div>
       </div>

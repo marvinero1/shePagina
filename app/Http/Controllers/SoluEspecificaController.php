@@ -2,24 +2,23 @@
 
 namespace App\Http\Controllers;
 
-use App\CalCarga;
-use Session;
+use App\soluEspecifica;
 use Illuminate\Http\Request;
+use Session;
 
-class CalCargaController extends Controller
+class SoluEspecificaController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
-    {
+    public function index(Request $request){
+
         $titulo = $request->get('buscarpor');
 
-        $calCarga = CalCarga::where('titulo','like',"%$titulo%")->latest()->get();
-
-        return view('carga.index', compact('calCarga'));
+        $soluEspecifica = soluEspecifica::where('titulo','like',"%$titulo%")->latest()->get();
+        return view('solucionesEspecificas.index', compact('soluEspecifica'));
     }
 
     /**
@@ -27,13 +26,13 @@ class CalCargaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request){
-
+    public function create(Request $request)
+    {
         $titulo = $request->get('buscarpor');
 
-        $calCarga = CalCarga::where('titulo','like',"%$titulo%")->latest()->paginate(10);
+        $soluEspecifica = soluEspecifica::where('titulo','like',"%$titulo%")->latest()->paginate(10);
 
-        return view('carga.create', compact('calCarga'));
+        return view('solucionesEspecificas.create', compact('soluEspecifica'));
     }
 
     /**
@@ -42,8 +41,8 @@ class CalCargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
+        
         $imagen = null;
         
         $request->validate([
@@ -54,31 +53,31 @@ class CalCargaController extends Controller
         if(request()->has('imagen')){
             $imagesUploaded = request()->file('imagen');
             $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/CalCarga/');
+            $imagenpath = public_path('/images/soluEspecifica/');
             $imagesUploaded->move($imagenpath, $imageName);
 
-            CalCarga::create([
+            soluEspecifica::create([
                 'titulo' => $request->titulo,
                 'descripcion' => $request->descripcion,
                 
-                'imagen' => '/images/CalCarga/' .$imageName,
+                'imagen' => '/images/soluEspecifica/' .$imageName,
             ]);
 
-            Session::flash('message','Calculo de Carga creado exisitosamente!');
-            return redirect()->route('CalCarga.create'); 
+            Session::flash('message','Solución Especifica creado exisitosamente!');
+            return redirect()->route('solucionesEspecificas.create'); 
         }else{
-            Session::flash('error','Calculo de Carga no pudo registrarse!');
-            return redirect()->route('CalCarga.create'); 
+            Session::flash('error','Solución Especifica no pudo registrarse!');
+            return redirect()->route('solucionesEspecificas.create'); 
         } 
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\CalCarga  $calCarga
+     * @param  \App\soluEspecifica  $soluEspecifica
      * @return \Illuminate\Http\Response
      */
-    public function show(CalCarga $calCarga)
+    public function show(soluEspecifica $soluEspecifica)
     {
         //
     }
@@ -86,10 +85,10 @@ class CalCargaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\CalCarga  $calCarga
+     * @param  \App\soluEspecifica  $soluEspecifica
      * @return \Illuminate\Http\Response
      */
-    public function edit(CalCarga $calCarga)
+    public function edit(soluEspecifica $soluEspecifica)
     {
         //
     }
@@ -98,27 +97,21 @@ class CalCargaController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CalCarga  $calCarga
+     * @param  \App\soluEspecifica  $soluEspecifica
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, CalCarga $calCarga)
-    {
-        //
+    public function update(Request $request, soluEspecifica $soluEspecifica){
+        
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\CalCarga  $calCarga
+     * @param  \App\soluEspecifica  $soluEspecifica
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(soluEspecifica $soluEspecifica)
     {
-        $calCarga = CalCarga::findOrFail($id);
-
-        $calCarga->delete();
-
-        Session::flash('message','Calculo de Carga eliminado exitosamente!');
-        return redirect()->route('CalCarga.create');
+        //
     }
 }
