@@ -13,8 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/index', function () {
-    return view('index.index');
+Route::get('/', function () {
+    $index = DB::table('indices')->get();
+
+    return view('index.index', compact('index'));
 });
 
 Auth::routes();

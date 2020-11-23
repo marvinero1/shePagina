@@ -1,9 +1,12 @@
 <nav class="navbar navbar-expand-md bg-white shadow-sm" style="background: #94c045 !important;">
     <div class="container">
         <div>
+          @if(Auth::user())
+                @if(Auth::user()->role == 'root')
            <button class="openbtn" onclick="openNav()" style="background: #94c045 !important;">☰<strong>SHE</strong></button> 
-        <a class="navbar-brand text-white" href="{{ url('/index') }}">
-            
+            <a class="navbar-brand text-white" href="{{ url('/index') }}">
+            @endif
+          @endif    
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -12,9 +15,8 @@
         
         <div class="navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-              @if(Auth::user())
-                <ul class="navbar-nav ml-auto">
-                  @if(Auth::user()->role == 'root')
+              
+                  <ul class="navbar-nav ml-auto">
                     <div id="mySidebar" class="sidebar">
                         <h5><strong>☰ SHE Consulting Group</strong></h5>
                         <a href="{{ route('index.create') }}" class="a">
@@ -79,9 +81,9 @@
                           <button href="javascript:void(0)" class="openbtn" onclick="closeNav()"
                           style="background: #94c045 !important;color: white">X Cerrar</button> 
                       </div>   
-                    @endif      
-                </ul>
-              @endif
+                         
+                  </ul>
+                
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->

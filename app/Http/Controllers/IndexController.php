@@ -18,9 +18,9 @@ class IndexController extends Controller
 
         // $index = DB::where('indices');
 
-        $index = DB::table('indices')->get();
+        // $index = DB::table('indices')->get();
 
-        return view('index.index', compact('index'));
+        // return view('index.index', compact('index'));
     }
 
     /**

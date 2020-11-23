@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-<section id="hero" style="background-image: url(/images/fondo/3.jpg);background-size: cover;position: relative;">
+<section id="hero" style="background-image: url(/images/fondo/3.jpg);background-size: cover;position: relative;background-repeat: round;">
     <div class="hero-container">
       <h1>Bienvenidos a S.H.E</h1>
       <h2> Visita nuestro nuevo campo de entrenamiento </h2>
