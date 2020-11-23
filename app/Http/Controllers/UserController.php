@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Session;
 
 class UserController extends Controller
 {
@@ -12,9 +13,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+
+        $user = User::get();
+
+        return view('usuarios.index', compact('user'));
     }
 
     /**
@@ -78,8 +81,13 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $user->delete();
+
+        Session::flash('message','Usuario eliminado exitosamente!');
+        return redirect()->route('users.index');
     }
 }

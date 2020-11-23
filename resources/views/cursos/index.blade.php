@@ -36,7 +36,10 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img src="{{ $instructoritem->imagen }}" alt="imagenCurso" width="467px" height="280">
+                            <div>
+                                <img class="row container" src="{{ $instructoritem->imagen }}" style="display: block;
+                                margin: auto;" alt="imagenCurso" width="467px" height="280">
+                            </div>
                             <br><br>
 
                             <div class="entry-content">

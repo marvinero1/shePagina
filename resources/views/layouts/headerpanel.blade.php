@@ -1,9 +1,12 @@
 <nav class="navbar navbar-expand-md bg-white shadow-sm" style="background: #94c045 !important;">
     <div class="container">
         <div>
+          @if(Auth::user())
+                @if(Auth::user()->role == 'root')
            <button class="openbtn" onclick="openNav()" style="background: #94c045 !important;">☰<strong>SHE</strong></button> 
-        <a class="navbar-brand text-white" href="{{ url('/') }}">
-            
+            <a class="navbar-brand text-white" href="{{ url('/index') }}">
+            @endif
+          @endif    
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
@@ -12,69 +15,75 @@
         
         <div class="navbar-collapse" id="navbarSupportedContent">
             <!-- Left Side Of Navbar -->
-            <ul class="navbar-nav ml-auto">
-                <div id="mySidebar" class="sidebar">
-                    <h5><strong>☰ SHE Consulting Group</strong></h5>
-                    <a href="{{ route('index.create') }}" class="a">
-                      <i class="fa fa-indent" aria-hidden="true"></i>&nbsp;
-                      <span>Index</span></a>
+              
+                  <ul class="navbar-nav ml-auto">
+                    <div id="mySidebar" class="sidebar">
+                        <h5><strong>☰ SHE Consulting Group</strong></h5>
+                        <a href="{{ route('index.create') }}" class="a">
+                          <i class="fa fa-indent" aria-hidden="true"></i>&nbsp;
+                          <span>Index</span></a>
 
-                    <a href="{{ route('resumen.create') }}" class="a">
-                      <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
-                      <span>Resumen</span></a>
+                        <a href="{{ route('resumen.create') }}" class="a">
+                          <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
+                          <span>Resumen</span></a>
 
-                    <a href="{{ route('pasos.create') }}" class="a">
-                      <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
-                      <span>Primeros Pasos</span></a>
+                        <a href="{{ route('pasos.create') }}" class="a">
+                          <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
+                          <span>Primeros Pasos</span></a>
 
-                    <a href="{{ route('crecimiento.create') }}" class="a">
-                      <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
-                      <span>Crecimiento Empresarial</span></a>
+                        <a href="{{ route('crecimiento.create') }}" class="a">
+                          <i class="fa fa-university" aria-hidden="true"></i>&nbsp;
+                          <span>Crecimiento Empresarial</span></a>
 
-                    <a href="{{ route('asistenciaTecnica.create') }}" class="a">
-                      <i class="fa fa-link" aria-hidden="true"></i>&nbsp;
-                      <span>Asistencia Técnica</span></a>
-                    
-                    <a href="{{ route('CalCarga.create') }}" class="a">
-                      <i class="fa fa-fire" aria-hidden="true"></i>&nbsp;
-                      <span>Calculo Carga de Fuego</span></a>
+                        <a href="{{ route('asistenciaTecnica.create') }}" class="a">
+                          <i class="fa fa-link" aria-hidden="true"></i>&nbsp;
+                          <span>Asistencia Técnica</span></a>
+                        
+                        <a href="{{ route('CalCarga.create') }}" class="a">
+                          <i class="fa fa-fire" aria-hidden="true"></i>&nbsp;
+                          <span>Calculo Carga de Fuego</span></a>
 
-                    <a href="{{ route('campoEntrenamiento.create') }}" class="a">
-                      <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;
-                      <span>Campo Entrenamiento</span></a>
-                   
-                    <a href="{{ route('diagnosticoIntegrales.create') }}" class="a">
-                      <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;
-                      <span>Diagnóstico Integral</span></a>
-                    
-                    <a href="{{ route('PSST.create') }}" class="a">
-                      <i class="fa fa-free-code-camp" aria-hidden="true"></i>&nbsp;
-                      <span>PSST</span></a>
+                        <a href="{{ route('campoEntrenamiento.create') }}" class="a">
+                          <i class="fa fa-industry" aria-hidden="true"></i>&nbsp;
+                          <span>Campo Entrenamiento</span></a>
+                      
+                        <a href="{{ route('diagnosticoIntegrales.create') }}" class="a">
+                          <i class="fa fa-file-text" aria-hidden="true"></i>&nbsp;
+                          <span>Diagnóstico Integral</span></a>
+                        
+                        <a href="{{ route('PSST.create') }}" class="a">
+                          <i class="fa fa-free-code-camp" aria-hidden="true"></i>&nbsp;
+                          <span>PSST</span></a>
 
-                    <a href="{{ route('MoniAmbiental.create') }}" class="a">
-                      <i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;
-                      <span>Monitoreo Ambiental</span></a>
+                        <a href="{{ route('MoniAmbiental.create') }}" class="a">
+                          <i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;
+                          <span>Monitoreo Ambiental</span></a>
 
-                    <a href="{{ route('MoniOcupacional.create') }}" class="a">
-                      <i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;
-                      <span>Monitoreo Ocupacional</span></a>
+                        <a href="{{ route('MoniOcupacional.create') }}" class="a">
+                          <i class="fa fa-caret-right" aria-hidden="true"></i>&nbsp;
+                          <span>Monitoreo Ocupacional</span></a>
 
-                    <a href="{{ route('cursos.create') }}" class="a">
-                      <i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;
-                      <span>Cursos</span></a>
+                        <a href="{{ route('cursos.create') }}" class="a">
+                          <i class="fa fa-graduation-cap" aria-hidden="true"></i>&nbsp;
+                          <span>Cursos</span></a>
 
-                    <a href="{{ route('noticias.create') }}" class="a">
-                      <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;
-                      <span>Noticias</span></a>
+                        <a href="{{ route('noticias.create') }}" class="a">
+                          <i class="fa fa-paper-plane" aria-hidden="true"></i>&nbsp;
+                          <span>Noticias</span></a>
 
-                    <a href="{{ route('asistenciaTecnica.create') }}" class="a">
-                      <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
-                      <span>Usuarios</span></a>
-                      <button href="javascript:void(0)" class="openbtn" onclick="closeNav()"
-                      style="background: #94c045 !important;color: white">X Cerrar</button> 
-                  </div>       
-            </ul>
+                        <a href="{{ route('solucionesEspecificas.create') }}" class="a">
+                          <i class="fa fa-briefcase" aria-hidden="true"></i>&nbsp;
+                          <span>Soluciones Específicas</span></a>
 
+                        <a href="{{ route('users.index') }}" class="a">
+                          <i class="fa fa-user" aria-hidden="true"></i>&nbsp;
+                          <span>Usuarios</span></a>
+                          <button href="javascript:void(0)" class="openbtn" onclick="closeNav()"
+                          style="background: #94c045 !important;color: white">X Cerrar</button> 
+                      </div>   
+                         
+                  </ul>
+                
             <!-- Right Side Of Navbar -->
             <ul class="navbar-nav ml-auto">
                 <!-- Authentication Links -->
@@ -97,9 +106,8 @@
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
-
+                            {{ __('Logout') }}</a>
+                        
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             @csrf
                         </form>
@@ -109,6 +117,7 @@
             </ul>
             
         </div>
+        
     </div>
 </nav> 
 

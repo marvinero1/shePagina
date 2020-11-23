@@ -65,10 +65,10 @@ class CalCargaController extends Controller
             ]);
 
             Session::flash('message','Calculo de Carga creado exisitosamente!');
-            return redirect()->route('asistenciaTecnica.create'); 
+            return redirect()->route('CalCarga.create'); 
         }else{
             Session::flash('error','Calculo de Carga no pudo registrarse!');
-            return redirect()->route('asistenciaTecnica.create'); 
+            return redirect()->route('CalCarga.create'); 
         } 
     }
 
@@ -119,6 +119,6 @@ class CalCargaController extends Controller
         $calCarga->delete();
 
         Session::flash('message','Calculo de Carga eliminado exitosamente!');
-        return redirect()->route('asistenciaTecnica.create');
+        return redirect()->route('CalCarga.create');
     }
 }

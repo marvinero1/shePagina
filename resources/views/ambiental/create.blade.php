@@ -75,7 +75,7 @@
                         <td style="text-align:center;">{{ $instructoritem->id }}</td>
                         @if($instructoritem->imagen == 'null')
                         <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen }}">
-                                <img img src="images/defaultBanco.jpg" class="img-thumbnail" alt="DPF" height="150px"
+                                <img src="images/defaultBanco.jpg" class="img-thumbnail" alt="DPF" height="150px"
                                     width="150px" style="display: block;margin: 0 auto;">
                             </a></td>
                         @else

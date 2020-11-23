@@ -92,7 +92,7 @@
                         <td style="text-align:center;">{{ $instructoritem->descripcion }}</td>
 
                         <td style="text-align:center;">
-                            <form action="{{ route('asistenciaTecnica.destroy',$instructoritem->id ) }}" method="POST"
+                            <form action="{{ route('CalCarga.destroy',$instructoritem->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
                                 @csrf
                                 @method('DELETE')

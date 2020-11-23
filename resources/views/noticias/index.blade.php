@@ -22,8 +22,9 @@
             <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                 <article class="entry">
                     <div class="entry-img">
-                        <img src="{{ $instructoritem->imagen_portada }}" alt="noticiaImagen" class="img-fluid"
-                            width="350px">
+                        <img class="row container" src="{{ $instructoritem->imagen_portada }}" alt="noticiaImagen" class="img-fluid"
+                            width="350px" style="display: block;
+                            margin: auto;" class="row container">
                     </div>
                     <h2 class="entry-title"> {{ $instructoritem->sec_1 }}</h2>
                     <div class="entry-meta">
@@ -57,7 +58,8 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img src="{{ $instructoritem->imagen_portada }}" alt="imagenNoticia" width="467px" height="280">
+                            <img class="row container" src="{{ $instructoritem->imagen_portada }}" alt="imagenNoticia" width="467px" height="280" style="display: block;
+                            margin: auto;">
                             <br><br>
 
                             <div class="entry-content">
@@ -66,7 +68,8 @@
 
                                 {{-- SECCION 1 --}}
                                 <h4><strong>Secciones Noticia</strong></h4>
-                                <img src="{{ $instructoritem->imagen_seccion }}" alt="imagenNoticia" width="467px" height="280">
+                                <img class="row container" src="{{ $instructoritem->imagen_seccion }}" alt="imagenNoticia" width="467px" height="280" style="display: block;
+                                margin: auto;">
                                 <h3>{{ $instructoritem->sec_1 }}</h3>
                                 <p>{{ $instructoritem->descripcion_sec_1 }}</p>
 
