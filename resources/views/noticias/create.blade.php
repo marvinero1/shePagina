@@ -21,7 +21,8 @@
                     </div>
                     <div class="col-md-6">
                         <label><strong>Descripción Noticia *</strong></label>
-                        <input type="text" class="form-control" placeholder="Descripcion Noticia" name="descripcion" required>
+                        <textarea type="text" class="form-control" placeholder="Descripción" name="descripcion"
+                            required></textarea> 
                     </div>
                 </div><br>
                 <div class="row">
@@ -42,15 +43,21 @@
                 <div class="row">
                     <div class="col-md-4">
                         <label><strong>Descripción Sección 1 *</strong></label>
-                        <input type="text" class="form-control" placeholder="Descripción Sección 1" name="descripcion_sec_1" required>
+                        <textarea type="text" class="form-control" name="descripcion_sec_1"placeholder="Descripción Sección 1"
+                            required>
+                            </textarea>
                     </div>
                     <div class="col-md-4">
                         <label><strong>Descripción Sección 2</strong></label>
-                        <input type="text" class="form-control" placeholder="Descripción Sección 2" name="descripcion_sec_2">
+                        <textarea type="text" class="form-control" placeholder="Descripción Sección 2" name="descripcion_sec_2"
+                            required>
+                            </textarea>
                     </div>
                     <div class="col-md-4">
                         <label><strong>Descripción Sección 3</strong></label>
-                        <input type="text" class="form-control" placeholder="Descripción Sección 3" name="descripcion_sec_3">
+                        <textarea type="text" class="form-control" placeholder="Descripción Sección 3" name="descripcion_sec_3"
+                            required>
+                            </textarea>
                     </div>
                 </div><br>           
                 <div class="row">

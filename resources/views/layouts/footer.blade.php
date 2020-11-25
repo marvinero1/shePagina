@@ -20,7 +20,7 @@
                     <div class="social-links">
                         <a href="https://www.facebook.com/SHE-Consullting-Group-SRL-1442644169304531"
                             class="facebook"><i class="icofont-facebook"></i></a>
-                        <a href="contact.html" class="google-plus"><i class="icofont-email"></i></a>
+                        <a href="contactanos" class="google-plus"><i class="icofont-email"></i></a>
                     </div>
                 </div>
             </div>

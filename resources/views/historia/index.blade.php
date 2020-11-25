@@ -48,12 +48,13 @@
           </div>
           <div class="col-md-7 pt-4" data-aos="fade-left">
             <h3></h3>
-            <p class="font-italic">{{ $instructoritem->titulo }}</p>
+            <p class="font-italic"><strong>{{ $instructoritem->titulo }}</strong></p>
             <ul>
               <li><i class="icofont-check"></i> {{ $instructoritem->texto1 }}</li>
               <li><i class="icofont-check"></i> {{ $instructoritem->texto2 }}</li>
               <li><i class="icofont-check"></i> {{ $instructoritem->texto3 }}</li>
 
+              <p>{{ $instructoritem->descripcion }}</p> 
             </ul>
           </div>
         </div>
@@ -73,13 +74,14 @@
             <img src="{{ $instructoritem->imagen }}" class="img-fluid" alt="imagenCrecimiento" width="100%">
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0 content" data-aos="fade-left">
-              <p class="font-italic">{{ $instructoritem->titulo }}</p><br>
+              <p class="font-italic"><strong>{{ $instructoritem->titulo }}</strong></p><br>
               
               <ul>
-                <li><i class="icofont-check"></i> {{ $instructoritem->texto1 }}</li>
+              <li><i class="icofont-check"></i> {{ $instructoritem->texto1 }}</li>
               <li><i class="icofont-check"></i> {{ $instructoritem->texto2 }}</li>
               <li><i class="icofont-check"></i> {{ $instructoritem->texto3 }}</li>
               </ul>
+              <p>{{ $instructoritem->descripcion }}</p> 
           </div>
         </div>
       @endforeach
