@@ -19,7 +19,7 @@ class CreatePasosTable extends Migration
             $table->string('texto1')->nullable();
             $table->string('texto2')->nullable();
             $table->string('texto3')->nullable();
-            $table->string('descripcion');
+            $table->string('descripcion',1000);
             $table->string('imagen');
             $table->softDeletes();
             $table->timestamps();

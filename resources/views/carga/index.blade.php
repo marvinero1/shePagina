@@ -6,8 +6,9 @@
     <div class="container">
         <div class="section-title" data-aos="fade-up">
             <h2>Calculo Carga de Fuego </h2>
-            <p>El objetivo de realizar un estudio de carga de fuego, es el de determinar la cantidad total de calor
-                capaz de desarrollar la combustión completa de todos los materiales contenidos en un sector de incendio.
+            <p>El estudio de densidad de la carga de fuego es un procedimiento que se encuentra contemplado en la NB 58005 asi como en la legislación nacional y tiene como objetivo evaluar los distintos materiales combustibles que se encuentran en un ambiente determinado.
+El objetivo que se persigue al realizar  este estudio, es el de conocer la cantidad total de calor que es capaz de generar la combustión completa de los materiales de un área. Finalmente, se obtiene la cantidad de material extinción (extintores a instalar).
+
             </p>
         </div>
         <br>

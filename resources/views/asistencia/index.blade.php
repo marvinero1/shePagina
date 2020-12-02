@@ -6,7 +6,7 @@
     <div class="container">
       <div class="section-title" data-aos="fade-up">
         <h2>Asistencia Técnica</h2>
-        <p> Realizamos el servicio de asesoramiento y asistencia en temas de seguridad y medio ambiente </p>
+        <p> Los complejos requisitos legales y normativos relacionados con la seguridad y salud en el trabajo, la gestión ambiental dificultan a las organizaciones su estricto cumplimiento, al no poder disponer de personal exclusivo para este fin, Nuestro servicio de asistencia técnica le provee soluciones y acciones puntuales a requerimientos específicos.</p>
       </div><br>
     
       <div class="row">

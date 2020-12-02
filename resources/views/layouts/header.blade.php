@@ -5,7 +5,7 @@
             <!--   <h1 class="text-light"><a href="index.html">SHE Consulting Group</a> </h1> -->
 
             <!-- Uncomment below if you prefer to use an image logo -->
-            <a href="/index"><img src="/images/logom.png" alt="logo" class="img-fluid"></a>
+            <a href="/"><img src="/images/logom.png" alt="logo" class="img-fluid"></a>
         </div>
 
         <nav class="nav-menu d-none d-lg-block">

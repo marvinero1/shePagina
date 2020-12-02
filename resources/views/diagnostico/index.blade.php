@@ -6,8 +6,7 @@
     <div class="container">
         <div class="section-title" data-aos="fade-up">
             <h2>Estudios de identificacion de riesgos</h2>
-            <p> Permite vislumbrar áreas de oportunidad y de mejora tanto organizacionales, analizando las diferentes
-                áreas que conforman la empresa para definir su óptima estructura de funcionamiento.</p>
+            <p> El Diagnóstico Integral permite identificar condiciones actuales en su empresa es  una radiografia completa de las condiciones físicas y administrativas relacionadas a la seguridad y el medioambiente, también nos permite  identificar oportunidades de mejora analizando las diferentes áreas que conforman la empresa. </p>
         </div>
         <br>
         <div class="row">

@@ -8,7 +8,7 @@
         <div class="container">
             <div class="breadcrumb-hero">
                 <h2>Blog de Noticias</h2>
-                <p> Aqui encontraras las noticias y notas mas importnates en el ambito de la seguridad industruial </p>
+                <p> Las noticias y notas mas importnates en el ambito de la seguridad industruial </p>
             </div>
         </div>
     </div>
@@ -32,7 +32,11 @@
                             <li class="d-flex align-items-center"><i class="icofont-user"></i>
                                 {{ $instructoritem->autor }}</li>
                             <li class="d-flex align-items-center"><i class="icofont-wall-clock"></i> <time
-                                    datetime="2020-10-01">{{ $instructoritem->created_at }}</time></li>
+                                    datetime="2020-10-01"><script type="text/javascript">
+                                                                copyright=new Date();
+                                                                update=copyright.getFullYear();
+                                                                document.write("2019 - " + update + " " );
+                                         </script></time></li>
                         </ul>
                     </div>
 

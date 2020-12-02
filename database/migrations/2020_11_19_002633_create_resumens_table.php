@@ -16,7 +16,7 @@ class CreateResumensTable extends Migration
         Schema::create('resumens', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('titulo');
-            $table->string('descripcion');
+            $table->string('descripcion',1000);
             $table->string('imagen');
             $table->string('video_url');
             $table->softDeletes();

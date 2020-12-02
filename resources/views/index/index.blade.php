@@ -19,14 +19,14 @@
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box py-5">
                   <i class="icofont-simple-smile"></i>
-                  <span  data-toggle="counter-up">100</span>
+                  <span  data-toggle="counter-up">+100</span>
                   <p>Clientes Satisfechos</p>
                 </div>
               </div>
               <div class="col-lg-3 col-md-5 col-6 d-md-flex align-items-md-stretch">
                 <div class="count-box py-5">
                   <i class="icofont-document-folder"></i>
-                  <span data-toggle="counter-up">185</span>
+                  <span data-toggle="counter-up">+185</span>
                   <p>Proyectos Elavorados</p>
                 </div>
               </div>
@@ -57,22 +57,16 @@
           @endforeach
           <div class="col-lg-6 pt-3 pt-lg-0 content">
             <h3>Conoce mas de nuestros Servicios</h3>
-            <p class="font-italic"> S.H.E. Consulting Group S.R.L. consultora especializada en
-            Gestión Salud, Seguridad Ocupacional y Gestión Medio Ambiental
-            remonta su historia a 2003 como una consultora unipersonal ante
-            la necesidad de gestionar en la sociedad puestos de trabajo más
-            seguro y equilibrados entre industria y medio ambiente.</p>          
+            <p class="font-italic"> S.H.E. Consulting Group S.R.L. es consultora nacional especializada en Gestión Salud, Seguridad Ocupacional y Gestión Medioambiental 
+En 17 años de actividad en nuestro medio S.H.E. Consulting Group S.R.L. amplía sus servicios y actividades y pasa de ser una empresa de servicios locales referentes de nuestro medio prestando servicios a nivel nacional.
+</p>          
             <ul>
               <li><i class="bx bx-check-double"></i> Trabajo de calidad bajo normas nacionales e internacionales.</li>
               <li><i class="bx bx-check-double"></i> Equipos certificados</li>
               <li><i class="bx bx-check-double"></i> Personal Capacitado y con amplia experiencia</li>
               <li><i class="bx bx-check-double"></i> Trabajos a nivel nacional</li>
             </ul>
-            <p>Durante su creciente desarrollo impulsado por el paulatino
-              desarrollo y demanda de nuestro mercado y la captación de grandes
-              proyectos además de los requerimientos generados por nuestros
-              clientes, nace la necesidad de cambiar de unipersonal a una
-              organización S.R.L.</p>
+            <p>Contamos con un laboratorio para monitoreos ambientales y ocupacionales, ambientes propios para actividades de enseñanza y un centro de entrenamiento para actividades específicas orientadas a la prevención.</p>
           </div>
         </div>
       </div>

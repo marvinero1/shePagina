@@ -21,7 +21,9 @@
                     </div>
                     <div class="col-md-6">
                         <label><strong>Descripción *</strong></label>
-                        <input type="text" class="form-control" placeholder="Descripción" name="descripcion" required>
+                        <textarea type="text" class="form-control" placeholder="Descripción" name="descripcion"
+                            required>
+                            </textarea>
                     </div>
                 </div>
                 <br>
@@ -32,7 +34,9 @@
                     </div>
                     <div class="col-md-6">
                         <label><strong>Descripción Instructor*</strong></label>
-                        <input type="text" class="form-control" placeholder="Descripción Instructor" name="descripcion_instructor" required>
+                        <textarea type="text" class="form-control" placeholder="Descripción" name="descripcion_instructor"
+                            required>
+                            </textarea>
                     </div>
                 </div>
                 <br>
