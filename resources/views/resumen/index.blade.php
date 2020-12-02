@@ -78,13 +78,13 @@
                 <tr>
                     <td style="text-align:center;">{{ $instructoritem->id }}</td>
                     @if($instructoritem->imagen == 'null')
-                    <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen }}">
-                            <img img src="images/defaultBanco.jpg" class="img-thumbnail" alt="DPF"
+                    <td><a class="image-popup-vertical-fit">
+                            <img img src="/images/defaultBanco.jpg" class="img-thumbnail" alt="resumen"
                                 height="150px" width="150px" style="display: block;margin: 0 auto;">
                         </a></td>
                     @else
                     <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen }}">
-                            <img src="{{ $instructoritem->imagen }}" class="img-thumbnail" alt="DPF"
+                            <img src="/{{ $instructoritem->imagen }}" class="img-thumbnail" alt="resumen"
                                 height="150px" width="150px" style="display: block;margin: 0 auto;">
                         </a></td>
                     @endif

@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\CalCarga;
 use Session;
 use Illuminate\Http\Request;
+use Image;
+use DB;
+use File;
 
 class CalCargaController extends Controller
 {
@@ -45,31 +48,49 @@ class CalCargaController extends Controller
     public function store(Request $request)
     {
         $imagen = null;
+        $mensaje= 'Calculo de Carga creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/CalCarga/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/CalCarga', mime_content_type('images/CalCarga'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/CalCarga';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Calculo de Carga creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            CalCarga::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/CalCarga/' .$imageName,
-            ]);
+        $calCarga = CalCarga::create($requestData);
 
-            Session::flash('message','Calculo de Carga creado exisitosamente!');
-            return redirect()->route('CalCarga.create'); 
+        if($calCarga){
+            DB::commit();
         }else{
-            Session::flash('error','Calculo de Carga no pudo registrarse!');
-            return redirect()->route('CalCarga.create'); 
-        } 
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+            return redirect()->route('asistenciaTecnica.create'); 
+        
     }
 
     /**

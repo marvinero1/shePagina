@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Paso;
 use Illuminate\Http\Request;
 use Session;
+use Image;
+use DB;
+use File;
 
 class PasoController extends Controller
 {
@@ -39,6 +42,7 @@ class PasoController extends Controller
     public function store(Request $request){
         
         $imagen = null;
+        $mensaje= 'Seccion de Primeros Pasos creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
@@ -46,29 +50,41 @@ class PasoController extends Controller
             'imagen' => 'required',
         ]);
         
-       
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/pasos/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/pasos', mime_content_type('images/pasos'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/pasos';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Seccion de Primeros Pasos creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            Paso::create([
-                'titulo' => $request->titulo,
-                'texto1' => $request->texto1,
-                'texto2' => $request->texto2,
-                'texto3' => $request->texto3,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/pasos/' .$imageName,
-            ]);
+        $paso = Paso::create($requestData);
 
-            Session::flash('message','Seccion de Primeros Pasos creado exisitosamente!');
-            return redirect()->route('pasos.create'); 
+        if($paso){
+            DB::commit();
         }else{
-            Session::flash('error','Seccion de Primeros Pasos no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('pasos.create'); 
-        } 
     }
 
     /**

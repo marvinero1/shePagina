@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Crecimiento;
 use Illuminate\Http\Request;
 use Session;
+use Image;
+use DB;
+use File;
 
 class CrecimientoController extends Controller
 {
@@ -40,35 +43,50 @@ class CrecimientoController extends Controller
     {
         // echo"asdsadasd";
         $imagen = null;
+        $mensaje= 'Seccion de Crecimiento creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
             'imagen' => 'required',
         ]);
-        
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/crecimiento/');
-            $imagesUploaded->move($imagenpath, $imageName);
 
-            Crecimiento::create([
-                'titulo' => $request->titulo,
-                'texto1' => $request->texto1,
-                'texto2' => $request->texto2,
-                'texto3' => $request->texto3,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/crecimiento/' .$imageName,
-            ]);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/crecimiento', mime_content_type('images/crecimiento'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/crecimiento';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Seccion de Crecimiento creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            Session::flash('message','Seccion de Crecimiento creado exisitosamente!');
-            return redirect()->route('crecimiento.create'); 
+        $crecimiento = Crecimiento::create($requestData);
+
+        if($crecimiento){
+            DB::commit();
         }else{
-            Session::flash('error','Seccion de Crecimiento no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('crecimiento.create'); 
-        } 
+        
     }
 
     /**

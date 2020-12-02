@@ -4,7 +4,7 @@
           @if(Auth::user())
                 @if(Auth::user()->role == 'root')
            <button class="openbtn" onclick="openNav()" style="background: #94c045 !important;">☰<strong>SHE</strong></button> 
-            <a class="navbar-brand text-white" href="{{ url('/index') }}">
+            <a class="navbar-brand text-white" href="{{ url('/') }}">
             @endif
           @endif    
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"

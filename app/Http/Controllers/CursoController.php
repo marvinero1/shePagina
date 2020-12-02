@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Curso;
 use Session;
 use Illuminate\Http\Request;
+use Image;
+use DB;
+use File;
 
 class CursoController extends Controller
 {
@@ -45,6 +48,7 @@ class CursoController extends Controller
     public function store(Request $request)
     {
         $imagen = null;
+        $mensaje= 'Curso creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
@@ -53,27 +57,41 @@ class CursoController extends Controller
             'descripcion_instructor' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/curso/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/curso', mime_content_type('images/curso'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/curso';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Curso creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            Curso::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                'instructor' => $request->instructor,
-                'descripcion_instructor' => $request->descripcion_instructor,
-                
-                'imagen' => '/images/curso/' .$imageName,
-            ]);
+        $curso = Curso::create($requestData);
 
-            Session::flash('message','Curso creado exisitosamente!');
-            return redirect()->route('cursos.create'); 
+        if($curso){
+            DB::commit();
         }else{
-            Session::flash('error','Curso no pudo registrarse!');
-            return redirect()->route('cursos.create'); 
-        }     
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+            return redirect()->route('cursos.create');     
     }
 
     /**

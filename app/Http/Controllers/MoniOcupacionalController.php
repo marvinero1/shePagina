@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\MoniOcupacional;
 use Session;
 use Illuminate\Http\Request;
+use Image;
+use DB;
+use File;
 
 class MoniOcupacionalController extends Controller
 {
@@ -45,31 +48,48 @@ class MoniOcupacionalController extends Controller
     public function store(Request $request)
     {
         $imagen = null;
+        $mensaje= 'Monitoreo Ocupacional creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/moniOcupacional/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/moniOcupacional', mime_content_type('images/moniOcupacional'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/moniOcupacional';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Monitoreo Ocupacional creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            MoniOcupacional::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/moniOcupacional/' .$imageName,
-            ]);
+        $moniOcupacional = MoniOcupacional::create($requestData);
 
-            Session::flash('message','Monitoreo Ocupacional creado exisitosamente!');
-            return redirect()->route('MoniOcupacional.create'); 
+        if($moniOcupacional){
+            DB::commit();
         }else{
-            Session::flash('error','Monitoreo Ocupacional no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('MoniOcupacional.create'); 
-        }     
     }
 
     /**

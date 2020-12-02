@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Resumen;
 use Illuminate\Http\Request;
 use Session;
+use Image;
+use DB;
+use File;
 
 class ResumenController extends Controller
 {
@@ -39,7 +42,8 @@ class ResumenController extends Controller
     public function store(Request $request){
 
         $imagen = null;
-        
+        $mensaje= 'Resumen Registrado correctamente';
+
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
@@ -47,26 +51,41 @@ class ResumenController extends Controller
             'video_url' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/resumen/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/resumen', mime_content_type('images/resumen'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/resumen';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Resumen Registrado correctamente';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            Resumen::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                'video_url' => $request->video_url,
-                
-                'imagen' => '/images/resumen/' .$imageName,
-            ]);
+        $resumen = Resumen::create($requestData);
 
-            Session::flash('message','Seccion de Resumen creado exisitosamente!');
-            return redirect()->route('resumen.create'); 
+        if($resumen){
+            DB::commit();
         }else{
-            Session::flash('error','Seccion de Resumen no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('resumen.create'); 
-        } 
     }
 
     /**

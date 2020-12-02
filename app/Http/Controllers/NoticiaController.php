@@ -62,12 +62,13 @@ class NoticiaController extends Controller
                 $imagesUploaded = request()->file('imagen_portada');
                 $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
                 $imagenpath = public_path('/images/noticia/');
-                $imagesUploaded->move($imagenpath, $imageName);
+                $path  = 'images/noticia';
+                $imagesUploaded->move($path, $imageName);
 
                 $imagen_seccionUploaded = request()->file('imagen_seccion');
                 $imagen_seccionName = time() . '.' . $imagen_seccionUploaded->getClientOriginalExtension();
-                $imagen_seccionpath = public_path('/images/noticia/');
-                $imagen_seccionUploaded->move($imagen_seccionpath, $imagen_seccionName);
+                $path = '/images/noticia';
+                $imagen_seccionUploaded->move($path, $imagen_seccionName);
             }
            
             Noticia::create([

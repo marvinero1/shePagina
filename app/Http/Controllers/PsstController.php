@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Psst;
 use Session;
 use Illuminate\Http\Request;
+use Image;
+use DB;
+use File;
 
 class PsstController extends Controller
 {
@@ -45,31 +48,48 @@ class PsstController extends Controller
     public function store(Request $request)
     {
         $imagen = null;
+        $mensaje= 'Psst creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/Psst/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/Psst', mime_content_type('images/Psst'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/Psst';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Psst creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            Psst::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/Psst/' .$imageName,
-            ]);
+        $psst = Psst::create($requestData);
 
-            Session::flash('message','Psst creado exisitosamente!');
-            return redirect()->route('PSST.create'); 
+        if($psst){
+            DB::commit();
         }else{
-            Session::flash('error','Psst no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('PSST.create'); 
-        } 
     }
 
     /**

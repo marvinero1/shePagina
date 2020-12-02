@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\MoniAmbiental;
 use Session;
 use Illuminate\Http\Request;
+use Image;
+use DB;
+use File;
 
 class MoniAmbientalController extends Controller
 {
@@ -45,31 +48,49 @@ class MoniAmbientalController extends Controller
     public function store(Request $request)
     {
         $imagen = null;
+        $mensaje= 'Monitoreo Ambiental creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/MoniAmbiental/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/MoniAmbiental', mime_content_type('images/MoniAmbiental'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/MoniAmbiental';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Monitoreo Ambiental creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            MoniAmbiental::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/MoniAmbiental/' .$imageName,
-            ]);
+        $moniAmbiental = MoniAmbiental::create($requestData);
 
-            Session::flash('message','Monitoreo Ambiental creado exisitosamente!');
-            return redirect()->route('MoniAmbiental.create'); 
+        if($moniAmbiental){
+            DB::commit();
         }else{
-            Session::flash('error','Monitoreo Ambiental no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('MoniAmbiental.create'); 
-        }     
+   
     }
 
     /**

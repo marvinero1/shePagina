@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Asistencia;
 use Session;
 use Illuminate\Http\Request;
+use Image;
+use DB;
+use File;
 
 class AsistenciaController extends Controller
 {
@@ -44,31 +47,49 @@ class AsistenciaController extends Controller
     public function store(Request $request)
     {   
         $imagen = null;
+        $mensaje= 'Asistencia  creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
         ]);
+        
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/asistencia', mime_content_type('images/asistencia'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/asistencia';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Asistencia creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/asistencia/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        $asistencia = Asistencia::create($requestData);
 
-            Asistencia::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/asistencia/' .$imageName,
-            ]);
-
-            Session::flash('message','Asistencia creado exisitosamente!');
-            return redirect()->route('asistenciaTecnica.create'); 
+        if($asistencia){
+            DB::commit();
         }else{
-            Session::flash('error','Asistencia no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('asistenciaTecnica.create'); 
-        }     
+    
     }
 
     /**

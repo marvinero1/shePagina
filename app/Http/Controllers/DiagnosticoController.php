@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Diagnostico;
 use Session;
 use Illuminate\Http\Request;
+use Image;
+use DB;
+use File;
 
 class DiagnosticoController extends Controller
 {
@@ -44,31 +47,49 @@ class DiagnosticoController extends Controller
     public function store(Request $request)
     {
         $imagen = null;
+        $mensaje= 'Diagnostico creado exisitosamente!';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/diagnosticoIntegrales/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/diagnosticoIntegrales', mime_content_type('images/diagnosticoIntegrales'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/diagnosticoIntegrales';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Diagnostico creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            Diagnostico::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/diagnosticoIntegrales/' .$imageName,
-            ]);
+        $diagnostico = Diagnostico::create($requestData);
 
-            Session::flash('message','Diagnostico creado exisitosamente!');
-            return redirect()->route('diagnosticoIntegrales.create'); 
+        if($diagnostico){
+            DB::commit();
         }else{
-            Session::flash('error','Diagnostico no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('diagnosticoIntegrales.create'); 
-        }     
+ 
     }
 
     /**

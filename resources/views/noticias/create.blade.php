@@ -125,23 +125,23 @@
                         <td style="text-align:center;">{{ $instructoritem->id }}</td>
                         @if($instructoritem->imagen_portada == 'null')
                         <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_portada }}">
-                                <img img src="images/defaultBanco.jpg" class="img-thumbnail" alt="DPF" height="150px"
+                                <img img src="/images/defaultBanco.jpg" class="img-thumbnail" alt="portadaNoticia" height="150px"
                                     width="150px" style="display: block;margin: 0 auto;">
                             </a></td>
                         @else
                         <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_portada }}">
-                                <img src="{{ $instructoritem->imagen_portada }}" class="img-thumbnail" alt="DPF" height="150px"
+                                <img src="{{ $instructoritem->imagen_portada }}" class="img-thumbnail" alt="portadaNoticia" height="150px"
                                     width="150px" style="display: block;margin: 0 auto;">
                             </a></td>
                         @endif
-                        @if($instructoritem->imagen_seccion == 'null')
+                        @if($instructoritem->imagen_seccion == '')
                         <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_seccion }}">
-                                <img img src="images/defaultBanco.jpg" class="img-thumbnail" alt="DPF" height="150px"
+                                <img img src="/images/defaultBanco.jpg" class="img-thumbnail" alt="seccionNoticia" height="150px"
                                     width="150px" style="display: block;margin: 0 auto;">
                             </a></td>
                         @else
                         <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_seccion }}">
-                                <img src="{{ $instructoritem->imagen_seccion }}" class="img-thumbnail" alt="DPF" height="150px"
+                                <img src="{{ $instructoritem->imagen_seccion }}" class="img-thumbnail" alt="seccionNoticia" height="150px"
                                     width="150px" style="display: block;margin: 0 auto;">
                             </a></td>
                         @endif

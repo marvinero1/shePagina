@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\soluEspecifica;
 use Illuminate\Http\Request;
 use Session;
+use Image;
+use DB;
+use File;
 
 class SoluEspecificaController extends Controller
 {
@@ -44,31 +47,48 @@ class SoluEspecificaController extends Controller
     public function store(Request $request){
         
         $imagen = null;
+        $mensaje= 'Solución Especifica Registrado correctamente';
         
         $request->validate([
             'titulo' => 'required',
             'descripcion' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/soluEspecifica/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/soluEspecifica', mime_content_type('images/soluEspecifica'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/soluEspecifica';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Solución Especifica Registrado correctamente';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            soluEspecifica::create([
-                'titulo' => $request->titulo,
-                'descripcion' => $request->descripcion,
-                
-                'imagen' => '/images/soluEspecifica/' .$imageName,
-            ]);
+        $soluEspecifica = soluEspecifica::create($requestData);
 
-            Session::flash('message','Solución Especifica creado exisitosamente!');
-            return redirect()->route('solucionesEspecificas.create'); 
+        if($soluEspecifica){
+            DB::commit();
         }else{
-            Session::flash('error','Solución Especifica no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('solucionesEspecificas.create'); 
-        } 
     }
 
     /**
