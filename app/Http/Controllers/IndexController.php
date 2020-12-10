@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Index;
 use Session;
 use Illuminate\Http\Request;
+use Image;
 use DB;
+use File;
 
 class IndexController extends Controller
 {
@@ -45,30 +47,49 @@ class IndexController extends Controller
     public function store(Request $request){
 
         $imagen = null;
+        $mensaje= 'Index creado exisitosamente!';
         
         $request->validate([
             'imagen' => 'required',
             'video_url' => 'required',
         ]);
 
-        if(request()->has('imagen')){
-            $imagesUploaded = request()->file('imagen');
-            $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-            $imagenpath = public_path('/images/index/');
-            $imagesUploaded->move($imagenpath, $imageName);
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
+           
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/index', mime_content_type('images/index'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/index';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Index creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            Index::create([
-                'video_url' => $request->video_url,
-                
-                'imagen' => '/images/index/' .$imageName,
-            ]);
+        $index = Index::create($requestData);
 
-            Session::flash('message','Index creado exisitosamente!');
-            return redirect()->route('index.create'); 
+        if($index){
+            DB::commit();
         }else{
-            Session::flash('error','Index no pudo registrarse!');
-            return redirect()->route('index.create'); 
-        } 
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
+            return redirect()->route('index.create');
+        
     }
 
     /**
