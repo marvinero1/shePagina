@@ -25,7 +25,7 @@
                             required></textarea> 
                     </div>
                 </div><br>
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-4">
                         <label><strong>Sección 1 *</strong></label>
                         <input type="text" class="form-control" placeholder="Titulo Sección 1" name="sec_1" required>
@@ -38,9 +38,9 @@
                         <label><strong>Sección 3</strong></label>
                         <input type="text" class="form-control" placeholder="Titulo Sección 3" name="sec_3">
                     </div>
-                </div><br>
+                </div><br> --}}
                 
-                <div class="row">
+                {{-- <div class="row">
                     <div class="col-md-4">
                         <label><strong>Descripción Sección 1 *</strong></label>
                         <textarea type="text" class="form-control" name="descripcion_sec_1"placeholder="Descripción Sección 1"
@@ -59,7 +59,7 @@
                             required>
                             </textarea>
                     </div>
-                </div><br>           
+                </div><br>            --}}
                 <div class="row">
                     <div class="col-sm-4" >
                         <label><strong>Imagen Portada</strong></label>
@@ -68,9 +68,9 @@
                             <strong>Imagen Portada</strong>
                         </label>
                         <p><strong>Sugerencia:</strong> Para una mejor visualizacion se recomienda<strong> 1500 × 1125 pixels</strong></p> 
-                        <input id="file-upload" type="file" name="imagen_portada">
+                        <input id="file-upload" type="file" name="imagen">
                     </div>
-                    <div class="col-sm-4">
+                    {{-- <div class="col-sm-4">
                         <label><strong>Imagen Seccion</strong></label>
                         <label for="file-upload1" class="custom-file-upload" style="text-align: center;">
                             <i class="fa fa-cloud-upload" aria-hidden="true"></i>&nbsp;
@@ -78,7 +78,7 @@
                         </label>
                         <p><strong>Sugerencia:</strong> Para una mejor visualizacion se recomienda<strong> 1500 × 1125 pixels</strong></p> 
                         <input id="file-upload1" type="file" name="imagen_seccion">
-                    </div>
+                    </div> --}}
                     <div class="col-sm-4">
                         <label><strong>Autor Noticia</strong></label>
                         <input type="text" class="form-control" placeholder="Autor" name="autor">
@@ -115,14 +115,8 @@
                     <tr>
                         <th style="text-align:center;">Id</th>
                         <th style="text-align:center;">Imagen Portada</th>
-                        <th style="text-align:center;">Imagen Seccion</th>
                         <th style="text-align:center;">Descripción Noticia</th>
-                        <th style="text-align:center;">sec_1</th>
-                        <th style="text-align:center;">sec_2</th>
-                        <th style="text-align:center;">sec_3</th>
-                        <th style="text-align:center;">descripcion_sec_1</th>
-                        <th style="text-align:center;">descripcion_sec_2</th>
-                        <th style="text-align:center;">descripcion_sec_3</th>
+                        <th style="text-align:center;">Autor</th>
                         <th style="text-align:center;">Acciones</th>
                     </tr>
                 </thead>
@@ -130,36 +124,20 @@
                     @foreach($noticia as $instructoritem)
                     <tr>
                         <td style="text-align:center;">{{ $instructoritem->id }}</td>
-                        @if($instructoritem->imagen_portada == 'null')
-                        <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_portada }}">
+                        @if($instructoritem->imagen == 'null')
+                        <td><a class="image-popup-vertical-fit" href="/{{ $instructoritem->imagen }}">
                                 <img img src="/images/defaultBanco.jpg" class="img-thumbnail" alt="portadaNoticia" height="150px"
                                     width="150px" style="display: block;margin: 0 auto;">
                             </a></td>
                         @else
-                        <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_portada }}">
-                                <img src="{{ $instructoritem->imagen_portada }}" class="img-thumbnail" alt="portadaNoticia" height="150px"
+                        <td><a class="image-popup-vertical-fit" href="/{{ $instructoritem->imagen }}">
+                                <img src="/{{ $instructoritem->imagen }}" class="img-thumbnail" alt="portadaNoticia" height="150px"
                                     width="150px" style="display: block;margin: 0 auto;">
                             </a></td>
                         @endif
-                        @if($instructoritem->imagen_seccion == '')
-                        <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_seccion }}">
-                                <img img src="/images/defaultBanco.jpg" class="img-thumbnail" alt="seccionNoticia" height="150px"
-                                    width="150px" style="display: block;margin: 0 auto;">
-                            </a></td>
-                        @else
-                        <td><a class="image-popup-vertical-fit" href="{{ $instructoritem->imagen_seccion }}">
-                                <img src="{{ $instructoritem->imagen_seccion }}" class="img-thumbnail" alt="seccionNoticia" height="150px"
-                                    width="150px" style="display: block;margin: 0 auto;">
-                            </a></td>
-                        @endif
+                        
                         <td style="text-align:center;">{{ $instructoritem->descripcion }}</td>
-                        <td style="text-align:center;">{{ $instructoritem->sec_1 }}</td>
-                        <td style="text-align:center;">{{ $instructoritem->sec_2 }}</td>
-                        <td style="text-align:center;">{{ $instructoritem->sec_3 }}</td>
-                        <td style="text-align:center;">{{ $instructoritem->descripcion_sec_1 }}</td>
-                        <td style="text-align:center;">{{ $instructoritem->descripcion_sec_2 }}</td>
-                        <td style="text-align:center;">{{ $instructoritem->descripcion_sec_3 }}</td>
-
+                        <td style="text-align:center;">{{ $instructoritem->autor }}</td>
                         <td style="text-align:center;">
                             <form action="{{ route('noticias.destroy',$instructoritem->id ) }}" method="POST"
                                 accept-charset="UTF-8" style="display:inline">
