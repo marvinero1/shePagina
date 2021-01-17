@@ -22,7 +22,7 @@ class PsstController extends Controller
 
         $psst = Psst::where('titulo','like',"%$titulo%")->latest()->paginate(10);
 
-        return view('PSST.index', compact('psst'));
+        return view('psst.index', compact('psst'));
     }
 
     /**
@@ -36,7 +36,7 @@ class PsstController extends Controller
 
         $psst = Psst::where('titulo','like',"%$titulo%")->latest()->paginate(10);
 
-        return view('PSST.create', compact('psst'));
+        return view('psst.create', compact('psst'));
     }
 
     /**

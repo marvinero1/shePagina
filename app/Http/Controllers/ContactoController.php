@@ -36,31 +36,31 @@ class ContactoController extends Controller
      */
     public function store(Request $request){
 
-       // Form validatio
+    //    // Form validatio
 
-        $request->validate([
-            'nombre' => 'required',
-            'email' => 'required|email',
-            'asunto'=>'required',
-            'mensaje' => 'required'
-        ]);
+    //     $request->validate([
+    //         'nombre' => 'required',
+    //         'email' => 'required|email',
+    //         'asunto'=>'required',
+    //         'mensaje' => 'required'
+    //     ]);
 
-        Contacto::create($request->all());
+    //     Contacto::create($request->all());
 
-        //  Send mail to admin
-        Mail::send('mail', array(
-            'nombre' => $request->get('nombre'),
-            'email' => $request->get('email'),
-            'asunto' => $request->get('asunto'),
-            'mensaje' => $request->get('mensaje'),
-        ), 
-        //  Store data in database
+    //     //  Send mail to admin
+    //     Mail::send('mail', array(
+    //         'nombre' => $request->get('nombre'),
+    //         'email' => $request->get('email'),
+    //         'asunto' => $request->get('asunto'),
+    //         'mensaje' => $request->get('mensaje'),
+    //     ), 
+    //     //  Store data in database
         
-        function($message) use ($request){
-            $message->from($request->email);
-            $message->to('info@shebolivia.net', 'Admin')->subject($request->get('subject'));
-        }); 
-        return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
+    //     function($message) use ($request){
+    //         $message->from($request->email);
+    //         $message->to('info@shebolivia.net', 'Admin')->subject($request->get('subject'));
+    //     }); 
+    //     return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
     }
 
     /**

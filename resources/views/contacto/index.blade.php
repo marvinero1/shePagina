@@ -69,7 +69,9 @@
               <div class="error-message"></div>
               <div class="sent-message">Su mensaje a sido enviado Gracias</div>
             </div>
-            <div class="text-center"><button type="submit">Enviar Mensaje</button></div>
+            <div class="text-center">
+              <button type="submit">Enviar Mensaje</button>
+            </div>
           </form>
         </div>
       </div>
