@@ -22,7 +22,7 @@
             <div class="col-lg-4  col-md-6 d-flex align-items-stretch" data-aos="fade-up">
                 <article class="entry">
                     <div class="entry-img">
-                        <img class="row container" src="{{ $instructoritem->imagen_portada }}" alt="noticiaImagen" class="img-fluid"
+                        <img class="row container" src="/{{ $instructoritem->imagen }}" alt="noticiaImagen" class="img-fluid"
                             width="350px" style="display: block;
                             margin: auto;" class="row container">
                     </div>
@@ -62,28 +62,16 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <img class="row container" src="{{ $instructoritem->imagen_portada }}" alt="imagenNoticia" width="467px" height="280" style="display: block;
+                            <img class="row container" src="/{{ $instructoritem->imagen }}" alt="imagenNoticia" width="467px" height="280" style="display: block;
                             margin: auto;">
                             <br><br>
-
+                            <div class="entry-content">
+                                <h3><strong>Autor </strong></h3>
+                                <p>{{ $instructoritem->autor }}</p>
+                            </div><br>
                             <div class="entry-content">
                                 <h3><strong>Contenido de la Noticia </strong></h3>
                                 <p>{{ $instructoritem->descripcion }}</p>
-
-                                {{-- SECCION 1 --}}
-                                <h4><strong>Secciones Noticia</strong></h4>
-                                <img class="row container" src="{{ $instructoritem->imagen_seccion }}" alt="imagenNoticia" width="467px" height="280" style="display: block;
-                                margin: auto;">
-                                <h3>{{ $instructoritem->sec_1 }}</h3>
-                                <p>{{ $instructoritem->descripcion_sec_1 }}</p>
-
-                                {{-- SECCION 2 --}}
-                                <h3>{{ $instructoritem->sec_2 }}</h3>
-                                <p>{{ $instructoritem->descripcion_sec_2 }}</p>
-
-                                {{-- SECCION 3 --}}
-                                <h3>{{ $instructoritem->sec_3 }}</h3>
-                                <p>{{ $instructoritem->descripcion_sec_3 }}</p>
                             </div>
                         </div>
                         <div class="modal-footer">

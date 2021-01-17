@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Noticia;
 use Session;
+use Image;
+use DB;
+use File;
 use Illuminate\Http\Request;
 
 class NoticiaController extends Controller
@@ -44,55 +47,53 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
+       
         $imagen = null;
-        $imagen_portada = null;
+        $mensaje= 'Curso creado exisitosamente!';
 
         $request->validate([
             'titulo' => 'required',
             'autor' => 'required',
             'descripcion' => 'required',
-            'sec_1' => 'required',
-            'descripcion_sec_1' => 'required',
-            'imagen_portada' => 'required',
+            'imagen' => 'required',
         ]);
 
 
-        if(request()->has('imagen_portada')){
-            if(request()->has('imagen_seccion')){
-                $imagesUploaded = request()->file('imagen_portada');
-                $imageName = time() . '.' . $imagesUploaded->getClientOriginalExtension();
-                $imagenpath = public_path('/images/noticia/');
-                $path  = 'images/noticia';
-                $imagesUploaded->move($path, $imageName);
-
-                $imagen_seccionUploaded = request()->file('imagen_seccion');
-                $imagen_seccionName = time() . '.' . $imagen_seccionUploaded->getClientOriginalExtension();
-                $path = '/images/noticia';
-                $imagen_seccionUploaded->move($path, $imagen_seccionName);
-            }
+        DB::beginTransaction();
+        $requestData = $request->all();
+    
+        if($request->imagen){
            
-            Noticia::create([
-                'titulo' => $request->titulo,
-                'autor' => $request->autor,
-                'descripcion' => $request->descripcion,
-                'sec_1' => $request->sec_1,
-                'sec_2' => $request->sec_2,
-                'sec_3' => $request->sec_3,
-                'descripcion_sec_1' => $request->descripcion_sec_1,
-                'descripcion_sec_2' => $request->descripcion_sec_2,
-                'descripcion_sec_3' => $request->descripcion_sec_3,
-                
-                'imagen_portada' => '/images/noticia/' .$imageName,
-                'imagen_seccion' => '/images/noticia/' .$imagen_seccionName,
+            $data = $request->imagen;
+            
+            $file = file_get_contents($request->imagen);
+            $info = $data->getClientOriginalExtension(); 
+            $extension = explode('images/noticia', mime_content_type('images/noticia'))[0];
+            $image = Image::make($file);
+            $fileName = rand(0,10)."-".date('his')."-".rand(0,10).".".$info; 
+            $path  = 'images/noticia';
+            if (!file_exists($path)) {
+                mkdir($path, 0777, true);
+            }
+            $img = $path.'/'.$fileName; 
+            if($image->save($img)) {
+                $requestData['imagen'] = $img;
+                $mensaje= 'Noticia creado creado exisitosamente!';
+            }else{
+                $mensaje = "Error al guardar la imagen";
+            }
+        }
 
-            ]);
+        $noticia = Noticia::create($requestData);
 
-            Session::flash('message','Noticia creado exisitosamente!');
-            return redirect()->route('noticias.create'); 
+        if($noticia){
+            DB::commit();
         }else{
-            Session::flash('error','Noticia no pudo registrarse!');
+            DB::rollback();
+        }
+
+        Session::flash('message',$mensaje);
             return redirect()->route('noticias.create'); 
-        }     
     }
 
     /**
