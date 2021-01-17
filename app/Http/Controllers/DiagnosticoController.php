@@ -132,8 +132,13 @@ class DiagnosticoController extends Controller
      * @param  \App\Diagnostico  $diagnostico
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Diagnostico $diagnostico)
+    public function destroy($id)
     {
-        //
+        $diagnostico = Diagnostico::findOrFail($id);
+
+        $diagnostico->delete();
+
+        Session::flash('message','Diagnostico eliminado exitosamente!');
+        return redirect()->route('diagnostico.create');
     }
 }

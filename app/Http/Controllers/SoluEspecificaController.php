@@ -132,6 +132,11 @@ class SoluEspecificaController extends Controller
      */
     public function destroy(soluEspecifica $soluEspecifica)
     {
-        //
+        $soluEspecifica = Diagnostico::findOrFail($id);
+
+        $soluEspecifica->delete();
+
+        Session::flash('message','Solucion Especifica eliminado exitosamente!');
+        return redirect()->route('soluEspecifica.create');
     }
 }
