@@ -139,6 +139,6 @@ class DiagnosticoController extends Controller
         $diagnostico->delete();
 
         Session::flash('message','Diagnostico eliminado exitosamente!');
-        return redirect()->route('diagnostico.create');
+        return redirect()->route('diagnosticoIntegrales.create');
     }
 }
