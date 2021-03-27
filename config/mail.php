@@ -98,8 +98,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'info@shebolivia.net'),
-        'name' => env('MAIL_FROM_NAME', 'SHE_Consulting_Group'),
+        'address' => env('MAIL_FROM_ADDRESS', 'capacitacion@shebolivia.net'),
+        'name' => env('MAIL_FROM_NAME', 'SHE Consulting Group'),
     ],
 
     /*
